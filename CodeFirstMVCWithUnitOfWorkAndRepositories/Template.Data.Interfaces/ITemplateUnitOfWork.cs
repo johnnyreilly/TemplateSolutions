@@ -1,11 +1,6 @@
 ﻿using Template.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Template.Data.Repositories
+namespace Template.Data.Interfaces
 {
     public interface ITemplateUnitOfWork
     {

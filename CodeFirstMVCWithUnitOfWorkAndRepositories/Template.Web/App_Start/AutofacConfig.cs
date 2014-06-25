@@ -3,6 +3,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using log4net;
 using Template.Data;
+using Template.Data.Interfaces;
 using Template.Data.Repositories;
 using Template.Web.Implementations;
 using Template.Web.Interfaces;

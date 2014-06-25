@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Template.Data.Interfaces;
+
 
 namespace Template.Data.Repositories
 {
@@ -18,9 +17,9 @@ namespace Template.Data.Repositories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual IQueryable<TEntity> Get()
+        public virtual ICollection<TEntity> GetAll()
         {
-            return dbSet;
+            return dbSet.ToList();
         }
 
         public virtual TEntity GetById(object id)

@@ -1,6 +1,5 @@
 ﻿using log4net;
-using Template.Data;
-using Template.Data.Repositories;
+using Template.Data.Interfaces;
 using Template.Web.Base;
 using Template.Web.Implementations;
 using Template.Web.Interfaces;
@@ -28,7 +27,7 @@ namespace Template.Web.Controllers
 
         public ActionResult Index()
         {
-            var logs = _db.Logs.Get().ToList();
+            var logs = _db.Logs.GetAll();
 
             foreach (var log in logs) 
             {
