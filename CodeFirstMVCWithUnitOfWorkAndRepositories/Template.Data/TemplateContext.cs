@@ -15,6 +15,15 @@ namespace Template.Data
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
+        }
+
         public DbSet<Log4Net> Logs { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Proverb> Proverbs { get; set; }
     }
 }

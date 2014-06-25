@@ -9,5 +9,7 @@ namespace Template.Data.Interfaces
         void Dispose();
 
         IGenericRepository<Log4Net> Logs { get; }
+        IGenericRepository<User> Users { get; }
+        IGenericRepository<Proverb> Proverbs { get; }
     }
 }

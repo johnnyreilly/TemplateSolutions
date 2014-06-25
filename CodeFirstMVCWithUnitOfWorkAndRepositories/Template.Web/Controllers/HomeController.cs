@@ -27,9 +27,9 @@ namespace Template.Web.Controllers
 
         public ActionResult Index()
         {
-            var logs = _db.Logs.GetAll();
+            var proverbs = _db.Proverbs.GetAll();
 
-            foreach (var log in logs) 
+            foreach (var proverb in proverbs) 
             {
 
                 var i = 1;

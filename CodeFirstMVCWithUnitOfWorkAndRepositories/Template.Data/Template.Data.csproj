@@ -52,6 +52,10 @@
     <Compile Include="Migrations\201406230946158_InitialCreate.Designer.cs">
       <DependentUpon>201406230946158_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406251410541_UsersAndProverbs.cs" />
+    <Compile Include="Migrations\201406251410541_UsersAndProverbs.Designer.cs">
+      <DependentUpon>201406251410541_UsersAndProverbs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\TemplateUnitOfWork.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201406230946158_InitialCreate.resx">
       <DependentUpon>201406230946158_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406251410541_UsersAndProverbs.resx">
+      <DependentUpon>201406251410541_UsersAndProverbs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
