@@ -15,12 +15,12 @@ using System.Web.Mvc;
 namespace Template.Web.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTests
+    public class ProverbControllerTests
     {
         private Mock<ITemplateUnitOfWork> _templateUnitOfWorkMock;
         private Mock<IUserHelper> _userHelperMock;
         private Mock<ILog> _loggerMock;
-        private HomeController _controller;
+        private ProverbController _controller;
 
         [TestInitialize]
         public void Initialise()
@@ -29,30 +29,37 @@ namespace Template.Web.Tests.Controllers
             _userHelperMock = new Mock<IUserHelper>();
             _loggerMock = new Mock<ILog>();
 
-            _controller = new HomeController(_templateUnitOfWorkMock.Object, _userHelperMock.Object, _loggerMock.Object);
+            _controller = new ProverbController(_templateUnitOfWorkMock.Object, _userHelperMock.Object, _loggerMock.Object);
+        }
+
+        private void Index_setup()
+        {
+            _templateUnitOfWorkMock
+                .Setup(x => x.Proverbs.GetAll())
+                .Returns(new List<Proverb>());
         }
 
         [TestMethod]
-        public void Index_returns_ViewResult()
+        public void Index_gets_Proverbs_from_repository()
         {
+            Index_setup();
+
             ViewResult result = _controller.Index();
+
+            _templateUnitOfWorkMock
+                .Verify(x => x.Proverbs.GetAll(), Times.Once);
         }
 
         [TestMethod]
-        public void About_sets_ViewBagMessage()
+        public void Index_returns_Proverbs_as_model()
         {
-            ViewResult result = _controller.About();
+            Index_setup();
 
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            ViewResult result = _controller.Index();
+
+            Assert.IsInstanceOfType(result.Model, typeof(ICollection<Proverb>));
         }
 
-        [TestMethod]
-        public void Contact_sets_ViewBagMessage()
-        {
-            ViewResult result = _controller.Contact();
-
-            Assert.AreEqual("Your contact page.", result.ViewBag.Message);
-        }
     }
 
 }

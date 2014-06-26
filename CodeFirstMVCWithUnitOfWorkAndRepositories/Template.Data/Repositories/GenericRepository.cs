@@ -22,7 +22,7 @@ namespace Template.Data.Repositories
             return dbSet.ToList();
         }
 
-        public virtual TEntity GetById(object id)
+        public virtual TEntity GetById(int id)
         {
             return dbSet.Find(id);
         }
@@ -32,7 +32,7 @@ namespace Template.Data.Repositories
             dbSet.Add(entity);
         }
 
-        public virtual void Delete(object id)
+        public virtual void Delete(int id)
         {
             var entityToDelete = dbSet.Find(id);
             Delete(entityToDelete);

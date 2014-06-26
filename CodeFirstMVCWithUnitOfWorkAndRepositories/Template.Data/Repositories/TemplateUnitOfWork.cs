@@ -19,8 +19,8 @@ namespace Template.Data.Repositories
 
         private TemplateContext _context;
         private GenericRepository<Log4Net> _logs;
-        private GenericRepository<User> _users;
-        private GenericRepository<Proverb> _proverbs;
+        private UserRepository _users;
+        private ProverbRepository _proverbs;
 
         public void Save()
         {
@@ -47,8 +47,8 @@ namespace Template.Data.Repositories
 
         public IGenericRepository<Log4Net> Logs { get { return _logs ?? (_logs = new GenericRepository<Log4Net>(_context)); } }
 
-        public IGenericRepository<User> Users { get { return _users ?? (_users = new GenericRepository<User>(_context)); } }
+        public IUserRepository Users { get { return _users ?? (_users = new UserRepository(_context)); } }
 
-        public IGenericRepository<Proverb> Proverbs { get { return _proverbs ?? (_proverbs = new GenericRepository<Proverb>(_context)); } }
+        public IProverbRepository Proverbs { get { return _proverbs ?? (_proverbs = new ProverbRepository(_context)); } }
     }
 }

@@ -12,9 +12,9 @@ using System.Web.Mvc;
 
 namespace Template.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class ProverbController : BaseController
     {
-        public HomeController(
+        public ProverbController(
             ITemplateUnitOfWork db,
             IUserHelper userHelper,
             ILog logger
@@ -27,21 +27,9 @@ namespace Template.Web.Controllers
 
         public ViewResult Index()
         {
-            return View();
-        }
+            var proverbs = _db.Proverbs.GetAll();
 
-        public ViewResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ViewResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(proverbs);
         }
     }
 }

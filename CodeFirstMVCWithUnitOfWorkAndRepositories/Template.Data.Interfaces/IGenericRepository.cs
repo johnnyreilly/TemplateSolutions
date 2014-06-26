@@ -6,11 +6,11 @@ namespace Template.Data.Interfaces
     {
         ICollection<TEntity> GetAll();
 
-        TEntity GetById(object id);
+        TEntity GetById(int id);
 
         void Insert(TEntity entity);
 
-        void Delete(object id);
+        void Delete(int id);
 
         void Delete(TEntity entityToDelete);
 

@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProverbRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="IGenericRepository.cs" />
     <Compile Include="ITemplateUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

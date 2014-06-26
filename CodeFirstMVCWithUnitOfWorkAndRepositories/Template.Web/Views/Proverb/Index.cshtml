@@ -1,0 +1,15 @@
+﻿@model ICollection<Template.Data.Models.Proverb>
+@{
+    ViewBag.Title = "Proverbs";
+}
+<h2>@ViewBag.Title</h2>
+<h3>Wisdom in sentence form...</h3>
+
+<ul>
+    @foreach (var proverb in Model)
+    {
+        <li>@proverb.Text</li>
+    }
+</ul>
+
+
