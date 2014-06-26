@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201406251410541_UsersAndProverbs.Designer.cs">
       <DependentUpon>201406251410541_UsersAndProverbs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406261139061_IX_Proverb_UserId.cs" />
+    <Compile Include="Migrations\201406261139061_IX_Proverb_UserId.Designer.cs">
+      <DependentUpon>201406261139061_IX_Proverb_UserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ProverbRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406251410541_UsersAndProverbs.resx">
       <DependentUpon>201406251410541_UsersAndProverbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406261139061_IX_Proverb_UserId.resx">
+      <DependentUpon>201406261139061_IX_Proverb_UserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

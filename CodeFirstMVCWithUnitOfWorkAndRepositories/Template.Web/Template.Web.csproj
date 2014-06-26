@@ -207,6 +207,7 @@
     <Content Include="Content\global.less" />
     <Content Include="Content\variables.less" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
+    <Content Include="Images\socrates-statue.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
