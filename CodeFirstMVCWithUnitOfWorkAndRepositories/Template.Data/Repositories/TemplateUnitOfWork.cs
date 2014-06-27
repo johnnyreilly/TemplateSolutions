@@ -42,7 +42,6 @@ namespace Template.Data.Repositories
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         public IGenericRepository<Log4Net> Logs { get { return _logs ?? (_logs = new GenericRepository<Log4Net>(_context)); } }

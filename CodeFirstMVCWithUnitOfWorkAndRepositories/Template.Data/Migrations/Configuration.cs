@@ -15,7 +15,11 @@ namespace Template.Data.Migrations
 
         protected override void Seed(Template.Data.TemplateContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //  This method will be called after migrating to the latest version and every time the 
+            //  database is accessed when the solution runs when database initializations are active.
+
+            var isSeededAlready = context.Users.Any();
+            if (isSeededAlready) return;
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
