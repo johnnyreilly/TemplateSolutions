@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Template.Web.ActionFilters;
 using Template.Web.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.UI;
 
 namespace Template.Web.Base
 {
-    //[AjaxException]
+    [AjaxExceptionFilter]
     [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
     public abstract class BaseController : Controller
     {

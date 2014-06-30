@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201406261139061_IX_Proverb_UserId.Designer.cs">
       <DependentUpon>201406261139061_IX_Proverb_UserId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406300932068_Log4NetChangeColumnSizes.cs" />
+    <Compile Include="Migrations\201406300932068_Log4NetChangeColumnSizes.Designer.cs">
+      <DependentUpon>201406300932068_Log4NetChangeColumnSizes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ProverbRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261139061_IX_Proverb_UserId.resx">
       <DependentUpon>201406261139061_IX_Proverb_UserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406300932068_Log4NetChangeColumnSizes.resx">
+      <DependentUpon>201406300932068_Log4NetChangeColumnSizes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
