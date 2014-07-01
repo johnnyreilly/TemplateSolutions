@@ -259,6 +259,14 @@
       <Project>{20df06e0-0a4f-42ef-a6be-2db1c5f8d62d}</Project>
       <Name>Template.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Template.Services.Interfaces\Template.Services.Interfaces.csproj">
+      <Project>{fc9ef515-88d8-4366-bf4f-9fd08ce5138d}</Project>
+      <Name>Template.Services.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Services\Template.Services.csproj">
+      <Project>{7eb46c18-fdc2-4c7a-84d7-b1a7c43190ef}</Project>
+      <Name>Template.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

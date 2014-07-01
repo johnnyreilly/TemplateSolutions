@@ -23,6 +23,12 @@ namespace Template.Web
             // Repositories
             builder.RegisterType<TemplateUnitOfWork>().As<ITemplateUnitOfWork>().InstancePerLifetimeScope();
 
+            // Domain Services
+            builder.RegisterAssemblyTypes(Assembly.Load("Template.Services"))
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
             // Web Project
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterControllers(assembly).InstancePerLifetimeScope();

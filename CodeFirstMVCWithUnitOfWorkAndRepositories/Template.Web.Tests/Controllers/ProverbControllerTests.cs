@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Template.Data.Models;
-using Template.Data.Interfaces;
+using Template.Services.Interfaces;
 using Template.Web.Controllers;
 using Template.Web.Interfaces;
 using System;
@@ -17,7 +17,7 @@ namespace Template.Web.Tests.Controllers
     [TestClass]
     public class ProverbControllerTests
     {
-        private Mock<ITemplateUnitOfWork> _templateUnitOfWorkMock;
+        private Mock<IProverbService> _proverbServiceMock;
         private Mock<IUserHelper> _userHelperMock;
         private Mock<ILog> _loggerMock;
         private ProverbController _controller;
@@ -25,17 +25,17 @@ namespace Template.Web.Tests.Controllers
         [TestInitialize]
         public void Initialise()
         {
-            _templateUnitOfWorkMock = new Mock<ITemplateUnitOfWork>();
+            _proverbServiceMock = new Mock<IProverbService>();
             _userHelperMock = new Mock<IUserHelper>();
             _loggerMock = new Mock<ILog>();
 
-            _controller = new ProverbController(_templateUnitOfWorkMock.Object, _userHelperMock.Object, _loggerMock.Object);
+            _controller = new ProverbController(_proverbServiceMock.Object, _userHelperMock.Object, _loggerMock.Object);
         }
 
         private void Index_setup()
         {
-            _templateUnitOfWorkMock
-                .Setup(x => x.Proverbs.GetAll())
+            _proverbServiceMock
+                .Setup(x => x.GetAll())
                 .Returns(new List<Proverb>());
         }
 
@@ -46,8 +46,8 @@ namespace Template.Web.Tests.Controllers
 
             ViewResult result = _controller.Index();
 
-            _templateUnitOfWorkMock
-                .Verify(x => x.Proverbs.GetAll(), Times.Once);
+            _proverbServiceMock
+                .Verify(x => x.GetAll(), Times.Once);
         }
 
         [TestMethod]

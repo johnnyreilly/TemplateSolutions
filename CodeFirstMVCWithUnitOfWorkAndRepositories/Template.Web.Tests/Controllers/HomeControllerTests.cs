@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Template.Data.Models;
-using Template.Data.Interfaces;
 using Template.Web.Controllers;
 using Template.Web.Interfaces;
 using System;
@@ -17,7 +16,6 @@ namespace Template.Web.Tests.Controllers
     [TestClass]
     public class HomeControllerTests
     {
-        private Mock<ITemplateUnitOfWork> _templateUnitOfWorkMock;
         private Mock<IUserHelper> _userHelperMock;
         private Mock<ILog> _loggerMock;
         private HomeController _controller;
@@ -25,11 +23,10 @@ namespace Template.Web.Tests.Controllers
         [TestInitialize]
         public void Initialise()
         {
-            _templateUnitOfWorkMock = new Mock<ITemplateUnitOfWork>();
             _userHelperMock = new Mock<IUserHelper>();
             _loggerMock = new Mock<ILog>();
 
-            _controller = new HomeController(_templateUnitOfWorkMock.Object, _userHelperMock.Object, _loggerMock.Object);
+            _controller = new HomeController(_userHelperMock.Object, _loggerMock.Object);
         }
 
         [TestMethod]

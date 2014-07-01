@@ -1,5 +1,5 @@
 ﻿using log4net;
-using Template.Data.Interfaces;
+using Template.Services.Interfaces;
 using Template.Web.Base;
 using Template.Web.Implementations;
 using Template.Web.Interfaces;
@@ -15,19 +15,19 @@ namespace Template.Web.Controllers
     public class ProverbController : BaseController
     {
         public ProverbController(
-            ITemplateUnitOfWork db,
+            IProverbService proverbService,
             IUserHelper userHelper,
             ILog logger
             ) : base(userHelper, logger) 
         {
-            _db = db;
+            _proverbService = proverbService;
         }
 
-        private ITemplateUnitOfWork _db;
+        private IProverbService _proverbService;
 
         public ViewResult Index()
         {
-            var proverbs = _db.Proverbs.GetAll();
+            var proverbs = _proverbService.GetAll();
 
             return View(proverbs);
         }

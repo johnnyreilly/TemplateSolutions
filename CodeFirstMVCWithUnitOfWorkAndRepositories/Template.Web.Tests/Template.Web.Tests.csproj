@@ -87,13 +87,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Template.Data.Interfaces\Template.Data.Interfaces.csproj">
-      <Project>{f32fbc47-84b0-4949-b1e7-997c51a9b7e6}</Project>
-      <Name>Template.Data.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Template.Data.Models\Template.Data.Models.csproj">
       <Project>{03fe7175-596b-4d57-823e-8d783881fb0d}</Project>
       <Name>Template.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Services.Interfaces\Template.Services.Interfaces.csproj">
+      <Project>{fc9ef515-88d8-4366-bf4f-9fd08ce5138d}</Project>
+      <Name>Template.Services.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Template.Web\Template.Web.csproj">
       <Project>{fd0df6ec-1416-44df-a227-a6b4ff4922ce}</Project>

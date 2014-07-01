@@ -15,15 +15,11 @@ namespace Template.Web.Controllers
     public class HomeController : BaseController
     {
         public HomeController(
-            ITemplateUnitOfWork db,
             IUserHelper userHelper,
             ILog logger
             ) : base(userHelper, logger) 
         {
-            _db = db;
         }
-
-        private ITemplateUnitOfWork _db;
 
         public ViewResult Index()
         {
