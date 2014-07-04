@@ -1,13 +1,20 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Template.Web.Interfaces;
 
 namespace Template.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Template.Web.Base.BaseController
     {
+        public HomeController(
+            IUserHelper userHelper,
+            ILog logger)
+            : base(userHelper, logger) { }
+
         public ActionResult Index()
         {
             return View();
