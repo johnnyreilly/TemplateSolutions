@@ -1,44 +1,53 @@
-﻿/*#region Override background color theme */
+﻿@white: #fff;
+@black: #000;
+@dark-grey: #333;
+@medium-grey: #999;
+@light-grey: #b7b7b7;
+@very-light-grey: #EEE;
+@light-blue: #52b9e9;
+@orange: #F58A00;
+
+/*#region Override background color theme */
 
 /*For Bootstrap 3*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 
 body {
-    background-color: #FFF;
+    background-color: @white;
 }
 
 .navbar-inverse {
-    background-color: #333;
+    background-color: @dark-grey;
 }
 
 .sidebar-widget form {
-    margin: 0em -1em;
+    margin: 0 -1em;
 }
 
 .sidebar .navi {
     > li > a {
-    background-color: #333 !important;
+    background-color: @dark-grey !important;
     }
 
     li ul li a {
-        color: #fff;
+        color: @white;
 
         &:hover {
-            color: #52b9e9;
+            color: @light-blue;
         }
 
         &:disabled {
-            color: #999;
+            color: @medium-grey;
         }    
     }
 }
 
 .navbar-inverse .btn-navbar {
-    background-color: #333;
+    background-color: @dark-grey;
 
     &:hover {
-        background-color: #333;
+        background-color: @dark-grey;
     }
 }
 
@@ -46,7 +55,7 @@ body {
     margin-top: -2px;
 
     .sidebar-inner {
-        background-color: #333;
+        background-color: @dark-grey;
     }
 }
 
@@ -56,7 +65,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    background-color: #333;
+    background-color: @dark-grey;
     width: 230px;
 }
 
@@ -69,7 +78,7 @@ body {
  }
 
 select > option {
-    color: black;
+    color: @black;
 }
 
 input.form-control,
@@ -124,15 +133,15 @@ small {
 }
 
 .text-subtle {
-    color: #b7b7b7;
+    color: @light-grey;
 }
 
 .page-title-subtle {
-    color: white;
+    color: @white;
 }
 
 .page-title {
-    color: #EEE;
+    color: @very-light-grey;
     margin-right: 12px;
 }
 
@@ -143,11 +152,11 @@ small {
 
 .widget-content .padd:hover {
     cursor: pointer;
-    color: white;
-    background-color: #52b9e9;
+    color: @white;
+    background-color: @light-blue;
 
     * {
-        color: white;
+        color: @white;
     }
 }
 
@@ -173,7 +182,7 @@ small {
 }
 
 .fa-search {
-    color: #FFFFFF;
+    color: @white;
 }
 
 .form-search {
@@ -213,7 +222,7 @@ small {
 
     .brand-title {
         margin-left: 2em;
-        color: #FFFFFF;
+        color: @white;
     }
 }
 
@@ -241,7 +250,7 @@ small {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #333;
+    background-color: @dark-grey;
     opacity: .9;
     pointer-events: auto;
     -webkit-backface-visibility: hidden;
@@ -261,12 +270,12 @@ small {
     font-size: 400%;
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     font-weight: normal;
-    -webkit-text-shadow: 2px 2px #000000;
-    text-shadow: 2px 2px #000000;
+    -webkit-text-shadow: 2px 2px @black;
+    text-shadow: 2px 2px @black;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
     text-transform: uppercase;
     text-decoration: none;
-    color: #F58A00;
+    color: @orange;
     padding: 0;
 
     &.page-splash-message-subtle {
@@ -279,11 +288,11 @@ small {
     &.fa-asterisk-large {
         font-size: 180%;
         vertical-align: middle;
-        color: #F58A00;
+        color: @orange;
     }
 
     &.fa-asterisk-alert {
-        color: #F58A00;
+        color: @orange;
     }
 }
 
