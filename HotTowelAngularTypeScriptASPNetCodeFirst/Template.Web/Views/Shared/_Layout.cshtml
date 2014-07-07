@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
     <style>
-        /* This helps the ng-show/ng-hide animations start at the right place. */
-        /* Since Angular has this but needs to load, this gives us the class early. */
+        @* This helps the ng-show/ng-hide animations start at the right place.
+           Since Angular has this but needs to load, this gives us the class early. *@
         .ng-hide {
             display: none !important;
         }
@@ -22,7 +22,6 @@
             document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
         }
     </script>
-
     @Styles.Render("~/css")
 </head>
 <body>
