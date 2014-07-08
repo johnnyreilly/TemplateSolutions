@@ -16,11 +16,11 @@
     };
 
     var config = {
-        appErrorPrefix: '[HT Error] ',
-        docTitle: 'HotTowel: ',
+        appErrorPrefix: '[Error] ',
+        docTitle: 'Proverbs: ',
         events: events,
         remoteServiceName: remoteServiceName,
-        version: '2.1.0'
+        version: '1.0.0'
     };
 
     app.value('config', config);

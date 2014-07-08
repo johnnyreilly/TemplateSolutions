@@ -38,11 +38,11 @@ interface commonConfig {
     };
 
     var config: config = {
-        appErrorPrefix: '[HT Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'HotTowel: ',
+        appErrorPrefix: '[Error] ', //Configure the exceptionHandler decorator
+        docTitle: 'Proverbs: ',
         events: events,
         remoteServiceName: remoteServiceName,
-        version: '2.1.0'
+        version: '1.0.0'
     };
 
     app.value('config', config);

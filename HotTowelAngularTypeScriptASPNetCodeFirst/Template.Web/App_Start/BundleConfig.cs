@@ -41,6 +41,7 @@ namespace Template.Web
                 "~/app/dashboard/dashboard.js",
                 "~/app/layout/shell.js",
                 "~/app/layout/sidebar.js",
+                "~/app/sages/sages.js",
 
                 // app Services 
                 "~/app/services/datacontext.js",

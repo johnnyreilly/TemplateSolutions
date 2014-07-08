@@ -24,7 +24,7 @@
         activate();
 
         function activate() {
-            logSuccess('Hot Towel Angular loaded!', null, true);
+            logSuccess('Proverbs loaded!', null, true);
             common.activateController([], controllerId);
         }
 

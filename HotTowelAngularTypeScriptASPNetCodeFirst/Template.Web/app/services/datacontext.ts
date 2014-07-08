@@ -5,26 +5,42 @@ interface person {
     location: string;
 }
 
+interface sage {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+}
+
 interface datacontext {
-    getPeople: () => ng.IPromise<person[]>
-    getMessageCount: () => ng.IPromise<number>
+    getMessageCount: () => ng.IPromise<number>;
+    getPeople: () => ng.IPromise<person[]>;
+    getSages: () => ng.IPromise<sage[]>;
 }
 
 (function () {
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('app').factory(serviceId, ['$http', 'common', datacontext]);
 
-    function datacontext(common: common) {
+    function datacontext($http: ng.IHttpService, common: common) {
+
         var $q = common.$q;
+        var getLogFn = common.logger.getLogFn;
+        var log = getLogFn(serviceId);
+        var logError = getLogFn(serviceId, 'error');
+        var logSuccess = getLogFn(serviceId, 'success');
+        var rootUrl = "/api/";
 
         var service: datacontext = {
+            getMessageCount: getMessageCount,
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getSages: getSages
         };
 
         return service;
+
 
         function getMessageCount() { return $q.when(72); }
 
@@ -39,6 +55,14 @@ interface datacontext {
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getSages() {
+            return $http.get<sage[]>(rootUrl + "sages").then(response => {
+                var sages = response.data;
+                log(sages.length + " Sages loaded");
+                return sages;
+            });
         }
     }
 })();

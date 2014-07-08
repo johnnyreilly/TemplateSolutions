@@ -2,14 +2,20 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('app').factory(serviceId, ['$http', 'common', datacontext]);
 
-    function datacontext(common) {
+    function datacontext($http, common) {
         var $q = common.$q;
+        var getLogFn = common.logger.getLogFn;
+        var log = getLogFn(serviceId);
+        var logError = getLogFn(serviceId, 'error');
+        var logSuccess = getLogFn(serviceId, 'success');
+        var rootUrl = "/api/";
 
         var service = {
+            getMessageCount: getMessageCount,
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getSages: getSages
         };
 
         return service;
@@ -29,6 +35,14 @@
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getSages() {
+            return $http.get(rootUrl + "sages").then(function (response) {
+                var sages = response.data;
+                log(sages.length + " Sages loaded");
+                return sages;
+            });
         }
     }
 })();

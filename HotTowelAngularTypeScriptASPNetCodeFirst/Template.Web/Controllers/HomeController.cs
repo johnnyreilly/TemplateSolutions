@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Template.Services.Interfaces;
 using Template.Web.Interfaces;
 
 namespace Template.Web.Controllers
@@ -11,9 +12,12 @@ namespace Template.Web.Controllers
     public class HomeController : Template.Web.Base.BaseController
     {
         public HomeController(
+            IUserService userService,
             IUserHelper userHelper,
             ILog logger)
-            : base(userHelper, logger) { }
+            : base(userHelper, logger) 
+        { 
+        }
 
         public ActionResult Index()
         {

@@ -1,4 +1,10 @@
-﻿interface spinnerToggleEvent extends ng.IAngularEvent {
+﻿interface shellVm {
+    busyMessage: string;
+    isBusy: boolean;
+    spinnerOptions: SpinnerOptions;
+}
+
+interface spinnerToggleEvent extends ng.IAngularEvent {
     show: boolean;
 }
 
@@ -10,7 +16,7 @@
         ['$rootScope', 'common', 'config', shell]);
 
     function shell($rootScope: ng.IRootScopeService, common: common, config: config) {
-        var vm = this;
+        var vm: shellVm = this;
         var logSuccess = common.logger.getLogFn(controllerId, 'success');
         var events = config.events;
         vm.busyMessage = 'Please wait ...';
@@ -29,7 +35,7 @@
         activate();
 
         function activate() {
-            logSuccess('Hot Towel Angular loaded!', null, true);
+            logSuccess('Proverbs loaded!', null, true);
             common.activateController([], controllerId);
         }
 

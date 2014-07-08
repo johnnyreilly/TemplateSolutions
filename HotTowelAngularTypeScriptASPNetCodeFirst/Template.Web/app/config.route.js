@@ -29,12 +29,22 @@
                     }
                 }
             }, {
+                url: '/sages',
+                config: {
+                    title: 'sages',
+                    templateUrl: 'app/sages/sages.html',
+                    settings: {
+                        nav: 2,
+                        content: '<i class="fa fa-users"></i> Sages'
+                    }
+                }
+            }, {
                 url: '/admin',
                 config: {
                     title: 'admin',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
-                        nav: 2,
+                        nav: 3,
                         content: '<i class="fa fa-lock"></i> Admin'
                     }
                 }
