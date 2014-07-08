@@ -1,0 +1,22 @@
+﻿<section class="mainbar" data-ng-controller="proverbs as vm">
+    <section class="matter">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header 
+                         title="{{vm.title}}"
+                         subtitle="{{vm.proverbs.length}}"></div>
+                    <div class="widget-content user">
+                        <blockquote data-ng-repeat="p in vm.proverbs">
+                            <p>{{p.text}}</p>
+                            <footer>id of sage: {{p.userId}}</footer>
+                        </blockquote>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

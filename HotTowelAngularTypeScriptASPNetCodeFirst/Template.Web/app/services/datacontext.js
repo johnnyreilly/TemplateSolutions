@@ -15,6 +15,7 @@
         var service = {
             getMessageCount: getMessageCount,
             getPeople: getPeople,
+            getProverbs: getProverbs,
             getSages: getSages
         };
 
@@ -35,6 +36,14 @@
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getProverbs() {
+            return $http.get(rootUrl + "proverbs").then(function (response) {
+                var proverbs = response.data;
+                log(proverbs.length + " Proverbs loaded");
+                return proverbs;
+            });
         }
 
         function getSages() {

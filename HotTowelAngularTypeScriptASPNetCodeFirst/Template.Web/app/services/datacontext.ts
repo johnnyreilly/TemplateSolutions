@@ -5,6 +5,12 @@ interface person {
     location: string;
 }
 
+interface proverb {
+    id: number;
+    userId: number;
+    text: string;
+}
+
 interface sage {
     id: number;
     name: string;
@@ -15,6 +21,7 @@ interface sage {
 interface datacontext {
     getMessageCount: () => ng.IPromise<number>;
     getPeople: () => ng.IPromise<person[]>;
+    getProverbs: () => ng.IPromise<proverb[]>;
     getSages: () => ng.IPromise<sage[]>;
 }
 
@@ -36,6 +43,7 @@ interface datacontext {
         var service: datacontext = {
             getMessageCount: getMessageCount,
             getPeople: getPeople,
+            getProverbs: getProverbs,
             getSages: getSages
         };
 
@@ -55,6 +63,14 @@ interface datacontext {
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getProverbs() {
+            return $http.get<proverb[]>(rootUrl + "proverbs").then(response => {
+                var proverbs = response.data;
+                log(proverbs.length + " Proverbs loaded");
+                return proverbs;
+            });
         }
 
         function getSages() {

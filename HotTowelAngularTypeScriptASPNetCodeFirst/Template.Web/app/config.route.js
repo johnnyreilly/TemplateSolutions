@@ -39,12 +39,22 @@
                     }
                 }
             }, {
+                url: '/proverbs',
+                config: {
+                    title: 'proverbs',
+                    templateUrl: 'app/proverbs/proverbs.html',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-comment"></i> Proverbs'
+                    }
+                }
+            }, {
                 url: '/admin',
                 config: {
                     title: 'admin',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
-                        nav: 3,
+                        nav: 4,
                         content: '<i class="fa fa-lock"></i> Admin'
                     }
                 }
