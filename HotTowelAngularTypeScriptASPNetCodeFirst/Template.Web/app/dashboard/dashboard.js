@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.news = {
-            title: 'Proverbs',
+            title: 'Proverb',
             description: 'The Wisdom of Socrates Aruldas (and The Team)'
         };
         vm.messageCount = 0;
@@ -21,7 +21,7 @@
         function activate() {
             var promises = [getMessageCount(), getPeople()];
             common.activateController(promises, controllerId).then(function () {
-                log('Activated Dashboard View');
+                return log('Activated Dashboard View');
             });
         }
 

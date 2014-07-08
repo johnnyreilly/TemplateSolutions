@@ -19,7 +19,7 @@
 
         var vm: dashboardVm = this;
         vm.news = {
-            title: 'Proverbs',
+            title: 'Proverb',
             description: 'The Wisdom of Socrates Aruldas (and The Team)'
         };
         vm.messageCount = 0;
@@ -31,19 +31,15 @@
         function activate() {
             var promises: ng.IPromise<any>[] = [getMessageCount(), getPeople()];
             common.activateController(promises, controllerId)
-                .then(function () { log('Activated Dashboard View'); });
+                .then(() => log('Activated Dashboard View'));
         }
 
         function getMessageCount() {
-            return datacontext.getMessageCount().then(function (data) {
-                return vm.messageCount = data;
-            });
+            return datacontext.getMessageCount().then((data) => vm.messageCount = data);
         }
 
         function getPeople() {
-            return datacontext.getPeople().then(function (data) {
-                return vm.people = data;
-            });
+            return datacontext.getPeople().then((data) => vm.people = data);
         }
     }
 })();

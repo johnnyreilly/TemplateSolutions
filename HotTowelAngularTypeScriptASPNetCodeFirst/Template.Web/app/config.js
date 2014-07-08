@@ -17,7 +17,7 @@
 
     var config = {
         appErrorPrefix: '[Error] ',
-        docTitle: 'Proverbs: ',
+        docTitle: 'Proverb: ',
         events: events,
         remoteServiceName: remoteServiceName,
         version: '1.0.0'

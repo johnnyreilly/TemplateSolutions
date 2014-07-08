@@ -35,7 +35,7 @@ interface spinnerToggleEvent extends ng.IAngularEvent {
         activate();
 
         function activate() {
-            logSuccess('Proverbs loaded!', null, true);
+            logSuccess('Proverb loaded!', null, true);
             common.activateController([], controllerId);
         }
 

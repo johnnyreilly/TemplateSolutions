@@ -39,7 +39,7 @@ interface commonConfig {
 
     var config: config = {
         appErrorPrefix: '[Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'Proverbs: ',
+        docTitle: 'Proverb: ',
         events: events,
         remoteServiceName: remoteServiceName,
         version: '1.0.0'
