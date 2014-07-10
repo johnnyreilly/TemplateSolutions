@@ -20,7 +20,7 @@
                          subtitle="{{vm.sages.length}}"></div>
                     <div class="widget-content user">
                         <div class="padd list-flow"
-                             data-ng-repeat="s in vm.sages">
+                             data-ng-repeat="s in vm.sages | orderBy:'name'">
                             <div class="user">
                                 <!--<img data-cc-img-person="{{s.imageSource}}"
                                      class="img-polaroid stacked" />-->

@@ -1,15 +1,28 @@
 ﻿<section class="mainbar" data-ng-controller="proverbs as vm">
     <section class="matter">
         <div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="form-search">
+                    <div class="pull-right">
+                        <select class="input-lg" ng-model="vm.selectedSage" ng-options="sage.name for sage in vm.sages">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
             <div class="row-fluid">
                 <div class="widget wviolet">
-                    <div data-cc-widget-header 
+                    <div data-cc-widget-header
                          title="{{vm.title}}"
-                         subtitle="{{vm.proverbs.length}}"></div>
+                         subtitle="{{(vm.proverbs|filter:vm.bySelectedSage).length}}"></div>
+
                     <div class="widget-content user">
-                        <blockquote data-ng-repeat="p in vm.proverbs">
+                        <blockquote data-ng-repeat="p in vm.proverbs | filter:vm.bySelectedSage">
                             <p>{{p.text}}</p>
-                            <footer>id of sage: {{p.userId}}</footer>
+                            <footer>{{p.user.name}}</footer>
                         </blockquote>
                     </div>
                     <div class="widget-foot">
@@ -17,6 +30,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </section>

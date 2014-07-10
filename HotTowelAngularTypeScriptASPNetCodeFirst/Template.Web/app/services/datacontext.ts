@@ -8,6 +8,7 @@ interface person {
 interface proverb {
     id: number;
     userId: number;
+    user: sage;
     text: string;
 }
 
