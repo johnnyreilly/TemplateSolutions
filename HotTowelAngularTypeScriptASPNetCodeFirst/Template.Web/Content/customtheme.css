@@ -926,6 +926,9 @@ form label {
     float: none;
     width: 100%;
   }
+  .sidebar .navi li {
+    margin-left: 1em;
+  }
   .sidebar .sidebar-dropdown {
     display: block;
   }
