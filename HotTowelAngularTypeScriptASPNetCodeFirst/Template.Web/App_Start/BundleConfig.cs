@@ -16,10 +16,9 @@ namespace Template.Web
                 "~/scripts/angular-animate.js",
                 "~/scripts/angular-route.js",
                 "~/scripts/angular-sanitize.js",
-                "~/scripts/bootstrap.js",
                 "~/scripts/toastr.js",
                 "~/scripts/moment.js",
-                "~/scripts/ui-bootstrap-tpls-{version}.js",
+                "~/scripts/angular-ui/ui-bootstrap-tpls.js",
                 "~/scripts/spin.js",
 
                 // Bootstrapping
@@ -41,6 +40,7 @@ namespace Template.Web
                 "~/app/dashboard/dashboard.js",
                 "~/app/layout/shell.js",
                 "~/app/layout/sidebar.js",
+                "~/app/layout/topnav.js",
                 "~/app/proverbs/proverbs.js",
                 "~/app/sages/sages.js",
 
