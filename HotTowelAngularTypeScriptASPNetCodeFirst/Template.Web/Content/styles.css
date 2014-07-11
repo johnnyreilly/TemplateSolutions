@@ -59,14 +59,10 @@ select > option {
 input.form-control,
 select.form-control,
 textarea.form-control {
-  /*width: 205px;*/
   width: 60%;
-  display: inline;
   display: block;
 }
 .widget .padd {
-  /*margin-bottom: 0;*/
-  /*padding: 1em 0;*/
   height: 12em;
 }
 .widget .padd.padd-tight {
