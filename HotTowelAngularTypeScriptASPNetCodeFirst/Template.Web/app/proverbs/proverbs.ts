@@ -1,68 +1,6 @@
-﻿interface proverbsVm {
-    bySelectedSage: (proverb) => boolean;
-    proverbs: proverb[];
-    selectedSage: sage;
-    sages: sage[];
-    title: string;
-}
-
-(function () {
-    'use strict';
-
-    var controllerId = 'proverbs';
-
-    angular.module('app').controller(controllerId,
-        ['$q', 'common', 'datacontext', proverbs]);
-
-    function proverbs($q: ng.IQService, common: common, datacontext: datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
-
-        var vm: proverbsVm = this;
-        vm.bySelectedSage = bySelectedSage;
-        vm.proverbs = [];
-        vm.sages = [];
-        vm.selectedSage = undefined;
-        vm.title = 'Proverbs';
-
-        activate();
-
-        function activate() {
-            var dataPromises: ng.IPromise<any>[] = [getProverbs(), getSages()];
-
-            var combinerPromise = $q.all(dataPromises).then((eventArgs) => {
-
-                var sageDictionary: { [id: number]: sage } = {};
-                vm.sages.forEach(sage => sageDictionary[sage.id] = sage);
-
-                vm.proverbs.forEach(proverb => proverb.user = sageDictionary[proverb.userId]);
-            });
-
-            common.activateController([combinerPromise], controllerId)
-                .then(() => log('Activated Proverbs View'));
-        }
-
-        function bySelectedSage(proverb: proverb) {
-            if (!vm.selectedSage) { return true; }
-            return proverb.user === vm.selectedSage
-        }
-
-        function getProverbs() {
-            return datacontext.getProverbs().then(data => vm.proverbs = data);
-        }
-
-        function getSages() {
-            return datacontext.getSages().then(data => vm.sages = data);
-        }
-    }
-})();
-
-/*
-"use strict";
+﻿"use strict";
 
 module controllers {
-
-    var controllerId = "proverbs";
 
     class Proverbs {
 
@@ -89,35 +27,39 @@ module controllers {
             this.activate();
         }
 
+        // Prototype methods
+
         activate() {
             var dataPromises: ng.IPromise<any>[] = [this.getProverbs(), this.getSages()];
-
-            var combinerPromise = this.$q.all(dataPromises).then((eventArgs) => {
-
-                var sageDictionary: { [id: number]: sage } = {};
-                this.sages.forEach(sage => sageDictionary[sage.id] = sage);
-
-                this.proverbs.forEach(proverb => proverb.user = sageDictionary[proverb.userId]);
-            });
+            var combinerPromise = this.$q.all(dataPromises).then(() => this.combineData());
 
             this.common.activateController([combinerPromise], controllerId)
                 .then(() => this.log("Activated Proverbs View"));
         }
 
-        bySelectedSage = (proverb: proverb) => {
-            if (!this.selectedSage) { return true; }
-                return proverb.user === this.selectedSage
-            }
-
-        private getProverbs() {
+        getProverbs() {
             return this.datacontext.getProverbs().then(data => this.proverbs = data);
         }
 
-        private getSages() {
+        getSages() {
             return this.datacontext.getSages().then(data => this.sages = data);
+        }
+
+        combineData() {
+            var sageDictionary: { [id: number]: sage } = {};
+            this.sages.forEach(sage => sageDictionary[sage.id] = sage);
+
+            this.proverbs.forEach(proverb => proverb.user = sageDictionary[proverb.userId]);
+        }
+
+        // Instance methods
+
+        bySelectedSage = (proverb: proverb) => {
+            if (!this.selectedSage) { return true; }
+            return proverb.user === this.selectedSage
         }
     }
 
+    var controllerId = "proverbs";
     angular.module("app").controller(controllerId, Proverbs);
 }
-*/
