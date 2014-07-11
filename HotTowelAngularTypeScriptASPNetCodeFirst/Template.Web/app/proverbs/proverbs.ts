@@ -14,7 +14,8 @@ module controllers {
         constructor(
             private $q: ng.IQService,
             private common: common,
-            private datacontext: datacontext) {
+            private datacontext: datacontext
+            ) {
 
             this.proverbs = [];
             this.sages = [];
