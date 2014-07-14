@@ -368,6 +368,11 @@ a {
     display: block;
   }
 }
+@media (min-width: 768px) {
+  .sidebar .sidebar-inner {
+    display: block !important;
+  }
+}
 @media (max-width: 767px) {
   .sidebar-filler {
     display: none;
