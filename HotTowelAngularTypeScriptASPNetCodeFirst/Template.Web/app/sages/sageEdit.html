@@ -3,20 +3,16 @@
         <div class="container-fluid">
             <div>
                 <button class="btn btn-info"
-                        data-ng-click="vm.goBack()">
-                    <i class="icon-hand-left"></i>Back
+                        ng-click="vm.cancel()"
+                        ng-disabled="!vm.canSave">
+                    <i class="fa fa-undo"></i>Cancel
                 </button>
                 <button class="btn btn-info"
-                        data-ng-click="vm.cancel()"
-                        data-ng-disabled="!vm.canSave">
-                    <i class="icon-undo"></i>Cancel
+                        ng-click="vm.save()"
+                        ng-disabled="!vm.canSave">
+                    <i class="glyphicon glyphicon-save"></i>Save
                 </button>
-                <button class="btn btn-info"
-                        data-ng-click="vm.save()"
-                        data-ng-disabled="!vm.canSave">
-                    <i class="icon-save"></i>Save
-                </button>
-                <span data-ng-show="vm.hasChanges"
+                <span ng-show="vm.hasChanges"
                       class="dissolve-animation ng-hide">
                     <i class="icon-asterisk icon-asterisk-large"></i>
                 </span>
