@@ -23,5 +23,10 @@ namespace Template.Services
             return _db.Users.GetAll();
         }
 
+        public User GetById(int id)
+        {
+            return _db.Users.GetById(id);
+        }
+
     }
 }

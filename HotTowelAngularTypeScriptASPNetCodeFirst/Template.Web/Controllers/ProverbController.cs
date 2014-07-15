@@ -11,13 +11,13 @@ using Template.Web.Interfaces;
 
 namespace HotTowelAngularTypeScriptASPNetCodeFirst.Controllers
 {
-    public class ProverbsController : ApiController
+    public class ProverbController : ApiController
     {
         IProverbService _proverbService;
         IUserHelper _userHelper;
         ILog _logger;
 
-        public ProverbsController(
+        public ProverbController(
             IProverbService proverbService,
             IUserHelper userHelper,
             ILog logger) 

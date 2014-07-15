@@ -10,5 +10,6 @@ namespace Template.Services.Interfaces
     public interface IUserService
     {
         ICollection<User> GetAll();
+        User GetById(int id);
     }
 }

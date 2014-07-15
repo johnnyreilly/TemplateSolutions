@@ -140,8 +140,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProverbsController.cs" />
-    <Compile Include="Controllers\SagesController.cs" />
+    <Compile Include="Controllers\ProverbController.cs" />
+    <Compile Include="Controllers\SageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,6 +159,8 @@
     <Content Include="app\proverbs\proverbs.js">
       <DependentUpon>proverbs.ts</DependentUpon>
     </Content>
+    <Content Include="app\sages\sageEdit.html" />
+    <Content Include="app\sages\sageDetail.html" />
     <Content Include="app\sages\sages.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -359,6 +361,8 @@
       <DependentUpon>topnav.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="app\proverbs\proverbs.ts" />
+    <TypeScriptCompile Include="app\sages\sageEdit.ts" />
+    <TypeScriptCompile Include="app\sages\sageDetail.ts" />
     <TypeScriptCompile Include="app\sages\sages.ts" />
     <Content Include="app\sages\sages.js">
       <DependentUpon>sages.ts</DependentUpon>

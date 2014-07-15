@@ -43,6 +43,7 @@ namespace Template.Web
                 "~/app/layout/topnav.js",
                 "~/app/proverbs/proverbs.js",
                 "~/app/sages/sages.js",
+                "~/app/sages/sageDetail.js",
 
                 // app Services 
                 "~/app/services/datacontext.js",

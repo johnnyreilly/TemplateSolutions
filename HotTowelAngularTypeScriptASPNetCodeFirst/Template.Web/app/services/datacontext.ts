@@ -23,6 +23,7 @@ interface datacontext {
     getMessageCount: () => ng.IPromise<number>;
     getPeople: () => ng.IPromise<person[]>;
     getProverbs: () => ng.IPromise<proverb[]>;
+    getSage: (id: number) => ng.IPromise<sage>;
     getSages: () => ng.IPromise<sage[]>;
 }
 
@@ -45,6 +46,7 @@ interface datacontext {
             getMessageCount: getMessageCount,
             getPeople: getPeople,
             getProverbs: getProverbs,
+            getSage: getSage,
             getSages: getSages
         };
 
@@ -67,15 +69,23 @@ interface datacontext {
         }
 
         function getProverbs() {
-            return $http.get<proverb[]>(rootUrl + "proverbs").then(response => {
+            return $http.get<proverb[]>(rootUrl + "proverb").then(response => {
                 var proverbs = response.data;
                 log(proverbs.length + " Proverbs loaded");
                 return proverbs;
             });
         }
 
+        function getSage(id: number) {
+            return $http.get<sage>(rootUrl + "sage/" + id).then(response => {
+                var sage = response.data;
+                log("Sage [" + sage.id + "] loaded");
+                return sage;
+            });
+        }
+
         function getSages() {
-            return $http.get<sage[]>(rootUrl + "sages").then(response => {
+            return $http.get<sage[]>(rootUrl + "sage").then(response => {
                 var sages = response.data;
                 log(sages.length + " Sages loaded");
                 return sages;

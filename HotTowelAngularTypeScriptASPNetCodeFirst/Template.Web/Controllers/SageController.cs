@@ -11,13 +11,13 @@ using Template.Web.Interfaces;
 
 namespace HotTowelAngularTypeScriptASPNetCodeFirst.Controllers
 {
-    public class SagesController : ApiController
+    public class SageController : ApiController
     {
         IUserService _userService;
         IUserHelper _userHelper;
         ILog _logger;
 
-        public SagesController(
+        public SageController(
             IUserService userService,
             IUserHelper userHelper,
             ILog logger) 
@@ -27,17 +27,17 @@ namespace HotTowelAngularTypeScriptASPNetCodeFirst.Controllers
             _logger = logger;
         }
 
+        public User Get(int id)
+        {
+            return _userService.GetById(id);
+        }
+
         public IEnumerable<User> Get()
         {
             return _userService.GetAll();
         }
 
         /*
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<controller>
         public void Post([FromBody]string value)

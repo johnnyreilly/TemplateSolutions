@@ -8,6 +8,7 @@
 
     // Configure the routes and route resolvers
     app.config(['$routeProvider', 'routes', routeConfigurator]);
+
     function routeConfigurator($routeProvider, routes) {
         routes.forEach(function (r) {
             $routeProvider.when(r.url, r.config);
@@ -37,6 +38,20 @@
                         nav: 2,
                         content: '<i class="fa fa-users"></i> Sages'
                     }
+                }
+            }, {
+                url: '/sages/detail/:id',
+                config: {
+                    title: 'sage details',
+                    templateUrl: 'app/sages/sageDetail.html',
+                    settings: {}
+                }
+            }, {
+                url: '/sages/edit/:id',
+                config: {
+                    title: 'sage edit',
+                    templateUrl: 'app/sages/sageEdit.html',
+                    settings: {}
                 }
             }, {
                 url: '/proverbs',

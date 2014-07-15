@@ -16,6 +16,7 @@
             getMessageCount: getMessageCount,
             getPeople: getPeople,
             getProverbs: getProverbs,
+            getSage: getSage,
             getSages: getSages
         };
 
@@ -39,15 +40,23 @@
         }
 
         function getProverbs() {
-            return $http.get(rootUrl + "proverbs").then(function (response) {
+            return $http.get(rootUrl + "proverb").then(function (response) {
                 var proverbs = response.data;
                 log(proverbs.length + " Proverbs loaded");
                 return proverbs;
             });
         }
 
+        function getSage(id) {
+            return $http.get(rootUrl + "sage/" + id).then(function (response) {
+                var sage = response.data;
+                log("Sage [" + sage.id + "] loaded");
+                return sage;
+            });
+        }
+
         function getSages() {
-            return $http.get(rootUrl + "sages").then(function (response) {
+            return $http.get(rootUrl + "sage").then(function (response) {
                 var sages = response.data;
                 log(sages.length + " Sages loaded");
                 return sages;
