@@ -2,11 +2,11 @@
     "use strict";
 
     var serviceId = "repository.sage";
-    angular.module("app").factory(serviceId, ["$http", "common", repositorySage]);
+    angular.module("app").factory(serviceId, ["$http", "common", "config", repositorySage]);
 
-    function repositorySage($http, common) {
+    function repositorySage($http, common, config) {
         var log = common.logger.getLogFn(serviceId);
-        var rootUrl = "/api/";
+        var rootUrl = config.remoteServiceRoot;
 
         var service = {
             getById: getById,

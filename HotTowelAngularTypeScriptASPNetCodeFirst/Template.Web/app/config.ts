@@ -9,7 +9,7 @@
         imageBasePath: string;
         unknownPersonImageSource: string;
     }
-    remoteServiceName: string;
+    remoteServiceRoot: string;
     version: string;
 }
 
@@ -27,10 +27,10 @@ interface commonConfig {
 
     // Configure Toastr
     toastr.options.timeOut = 4000;
-    toastr.options.positionClass = 'toast-bottom-right';
+    toastr.options.positionClass = "toast-bottom-right";
 
     // For use with the HotTowel-Angular-Breeze add-on that uses Breeze
-    var remoteServiceName = 'breeze/Breeze';
+    var remoteServiceRoot = "/api/";
 
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
@@ -41,7 +41,7 @@ interface commonConfig {
         appErrorPrefix: '[Error] ', //Configure the exceptionHandler decorator
         docTitle: 'Proverb: ',
         events: events,
-        remoteServiceName: remoteServiceName,
+        remoteServiceRoot: remoteServiceRoot,
         version: '1.0.0'
     };
 

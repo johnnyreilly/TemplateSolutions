@@ -2,11 +2,11 @@
     "use strict";
 
     var serviceId = "repository.proverb";
-    angular.module("app").factory(serviceId, ["$http", "common", repositoryProverb]);
+    angular.module("app").factory(serviceId, ["$http", "common", "config", repositoryProverb]);
 
-    function repositoryProverb($http, common) {
+    function repositoryProverb($http, common, config) {
         var log = common.logger.getLogFn(serviceId);
-        var rootUrl = "/api/";
+        var rootUrl = config.remoteServiceRoot;
 
         var service = {
             getAll: getAll

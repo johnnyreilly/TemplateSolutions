@@ -6,7 +6,6 @@
 }
 
 interface repositoryProverb {
-    //getById: (id: number) => ng.IPromise<proverb>;
     getAll: () => ng.IPromise<proverb[]>;
 }
 
@@ -14,19 +13,18 @@ interface repositoryProverb {
     "use strict";
 
     var serviceId = "repository.proverb";
-    angular.module("app").factory(serviceId, ["$http", "common", repositoryProverb]);
+    angular.module("app").factory(serviceId, ["$http", "common", "config", repositoryProverb]);
 
-    function repositoryProverb($http: ng.IHttpService, common: common) {
+    function repositoryProverb($http: ng.IHttpService, common: common, config: config) {
 
         var log = common.logger.getLogFn(serviceId);
-        var rootUrl = "/api/";
+        var rootUrl = config.remoteServiceRoot;
 
         var service: repositoryProverb = {
             getAll: getAll
         };
 
         return service;
-
 
         function getAll() {
             return $http.get<proverb[]>(rootUrl + "proverb").then(response => {

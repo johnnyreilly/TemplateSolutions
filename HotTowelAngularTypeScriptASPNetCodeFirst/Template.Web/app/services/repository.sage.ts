@@ -14,12 +14,12 @@ interface repositorySage {
     "use strict";
 
     var serviceId = "repository.sage";
-    angular.module("app").factory(serviceId, ["$http", "common", repositorySage]);
+    angular.module("app").factory(serviceId, ["$http", "common", "config", repositorySage]);
 
-    function repositorySage($http: ng.IHttpService, common: common) {
+    function repositorySage($http: ng.IHttpService, common: common, config: config) {
 
         var log = common.logger.getLogFn(serviceId);
-        var rootUrl = "/api/";
+        var rootUrl = config.remoteServiceRoot;
 
         var service: repositorySage = {
             getById: getById,
@@ -27,7 +27,6 @@ interface repositorySage {
         };
 
         return service;
-
 
         function getById(id: number) {
             return $http.get<sage>(rootUrl + "sage/" + id).then(response => {
