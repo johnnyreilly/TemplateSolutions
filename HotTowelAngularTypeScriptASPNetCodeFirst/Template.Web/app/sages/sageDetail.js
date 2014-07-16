@@ -28,7 +28,7 @@ var controllers;
 
         SageDetail.prototype.getSage = function (id) {
             var _this = this;
-            return this.datacontext.sage.getById(id).then(function (data) {
+            return this.datacontext.sage.getById(id, true).then(function (data) {
                 return _this.sage = data;
             });
         };

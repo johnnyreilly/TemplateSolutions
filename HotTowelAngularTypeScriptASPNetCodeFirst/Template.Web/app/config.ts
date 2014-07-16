@@ -29,7 +29,6 @@ interface commonConfig {
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = "toast-bottom-right";
 
-    // For use with the HotTowel-Angular-Breeze add-on that uses Breeze
     var remoteServiceRoot = "/api/";
 
     var events = {

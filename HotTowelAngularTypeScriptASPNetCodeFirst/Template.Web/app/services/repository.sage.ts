@@ -6,7 +6,7 @@ interface sage {
 }
 
 interface repositorySage {
-    getById: (id: number) => ng.IPromise<sage>;
+    getById: (id: number, forceRemote?: boolean) => ng.IPromise<sage>;
     getAll: () => ng.IPromise<sage[]>;
 }
 
@@ -20,6 +20,7 @@ interface repositorySage {
 
         var log = common.logger.getLogFn(serviceId);
         var rootUrl = config.remoteServiceRoot;
+        var cache: { [id: number]: sage } = {};
 
         var service: repositorySage = {
             getById: getById,
@@ -28,9 +29,19 @@ interface repositorySage {
 
         return service;
 
-        function getById(id: number) {
+        function getById(id: number, forceRemote?: boolean) {
+
+            var sage: sage;
+            if (!forceRemote) {
+                sage = cache[id];
+                if (sage) {
+                    return common.$q.when(sage);
+                }
+            }
+
             return $http.get<sage>(rootUrl + "sage/" + id).then(response => {
-                var sage = response.data;
+                sage = response.data;
+                cache[sage.id] = sage;
                 log("Sage [" + sage.id + "] loaded");
                 return sage;
             });

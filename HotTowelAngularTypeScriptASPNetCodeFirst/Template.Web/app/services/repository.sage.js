@@ -7,6 +7,7 @@
     function repositorySage($http, common, config) {
         var log = common.logger.getLogFn(serviceId);
         var rootUrl = config.remoteServiceRoot;
+        var cache = {};
 
         var service = {
             getById: getById,
@@ -15,9 +16,18 @@
 
         return service;
 
-        function getById(id) {
+        function getById(id, forceRemote) {
+            var sage;
+            if (!forceRemote) {
+                sage = cache[id];
+                if (sage) {
+                    return common.$q.when(sage);
+                }
+            }
+
             return $http.get(rootUrl + "sage/" + id).then(function (response) {
-                var sage = response.data;
+                sage = response.data;
+                cache[sage.id] = sage;
                 log("Sage [" + sage.id + "] loaded");
                 return sage;
             });
