@@ -26,7 +26,7 @@
         }
 
         function getSages() {
-            return datacontext.getSages().then(data => vm.sages = data);
+            return datacontext.sage.getAll().then(data => vm.sages = data);
         }
     }
 })();

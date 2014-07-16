@@ -39,14 +39,14 @@ var controllers;
 
         Proverbs.prototype.getProverbs = function () {
             var _this = this;
-            return this.datacontext.getProverbs().then(function (data) {
+            return this.datacontext.proverb.getAll().then(function (data) {
                 return _this.proverbs = data;
             });
         };
 
         Proverbs.prototype.getSages = function () {
             var _this = this;
-            return this.datacontext.getSages().then(function (data) {
+            return this.datacontext.sage.getAll().then(function (data) {
                 return _this.sages = data;
             });
         };

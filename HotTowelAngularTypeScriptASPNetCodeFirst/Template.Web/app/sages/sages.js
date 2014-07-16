@@ -22,7 +22,7 @@
         }
 
         function getSages() {
-            return datacontext.getSages().then(function (data) {
+            return datacontext.sage.getAll().then(function (data) {
                 return vm.sages = data;
             });
         }

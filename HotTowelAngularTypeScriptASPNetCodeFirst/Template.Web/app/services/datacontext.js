@@ -1,10 +1,17 @@
+//interface person {
+//    firstName: string;
+//    lastName: string;
+//    age: number;
+//    location: string;
+//}
+
 (function () {
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['$http', 'common', datacontext]);
+    angular.module('app').factory(serviceId, ["$http", "common", "repositories", datacontext]);
 
-    function datacontext($http, common) {
+    function datacontext($http, common, repositories) {
         var $q = common.$q;
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(serviceId);
@@ -13,55 +20,64 @@
         var rootUrl = "/api/";
 
         var service = {
-            getMessageCount: getMessageCount,
-            getPeople: getPeople,
-            getProverbs: getProverbs,
-            getSage: getSage,
-            getSages: getSages
+            //getMessageCount: getMessageCount,
+            //getPeople: getPeople,
+            // Undefined members will be replaced with properties in defineLazyLoadedRepos
+            proverb: undefined,
+            sage: undefined
         };
+
+        defineLazyLoadedRepos();
 
         return service;
 
-        function getMessageCount() {
-            return $q.when(72);
-        }
+        /**
+        * Replace undefined members on service with ES5 properties for each repo
+        */
+        function defineLazyLoadedRepos() {
+            var repoNames = [];
+            for (var key in service) {
+                if (service.hasOwnProperty(key) && (service[key] === undefined)) {
+                    repoNames.push(key);
+                }
+            }
 
+            repoNames.forEach(function (name) {
+                Object.defineProperty(service, name, {
+                    configurable: true,
+                    get: function () {
+                        // The 1st time the repo is request via this property,
+                        // we ask the repositories for it (which will inject it).
+                        var repo = repositories.getRepo(name);
+
+                        // Rewrite this property to always return this repo;
+                        // no longer redefinable
+                        Object.defineProperty(service, name, {
+                            value: repo,
+                            configurable: false,
+                            enumerable: true
+                        });
+                        return repo;
+                    }
+                });
+            });
+        }
+        /*
+        function getMessageCount() { return $q.when(72); }
+        
         function getPeople() {
-            var people = [
-                { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
-                { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
-                { firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
-                { firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
-                { firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
-                { firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
-                { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
-            ];
-            return $q.when(people);
+        var people = [
+        { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
+        { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
+        { firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
+        { firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
+        { firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
+        { firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
+        { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
+        ];
+        return $q.when(people);
         }
-
-        function getProverbs() {
-            return $http.get(rootUrl + "proverb").then(function (response) {
-                var proverbs = response.data;
-                log(proverbs.length + " Proverbs loaded");
-                return proverbs;
-            });
-        }
-
-        function getSage(id) {
-            return $http.get(rootUrl + "sage/" + id).then(function (response) {
-                var sage = response.data;
-                log("Sage [" + sage.id + "] loaded");
-                return sage;
-            });
-        }
-
-        function getSages() {
-            return $http.get(rootUrl + "sage").then(function (response) {
-                var sages = response.data;
-                log(sages.length + " Sages loaded");
-                return sages;
-            });
-        }
+        */
     }
 })();
 //# sourceMappingURL=datacontext.js.map

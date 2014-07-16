@@ -39,11 +39,11 @@ module controllers {
         }
 
         getProverbs() {
-            return this.datacontext.getProverbs().then(data => this.proverbs = data);
+            return this.datacontext.proverb.getAll().then(data => this.proverbs = data);
         }
 
         getSages() {
-            return this.datacontext.getSages().then(data => this.sages = data);
+            return this.datacontext.sage.getAll().then(data => this.sages = data);
         }
 
         combineData() {

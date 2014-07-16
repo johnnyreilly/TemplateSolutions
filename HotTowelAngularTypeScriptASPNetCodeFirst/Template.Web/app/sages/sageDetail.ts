@@ -42,7 +42,7 @@ module controllers {
         }
 
         getSage(id: number) {
-            return this.datacontext.getSage(id).then(data => this.sage = data);
+            return this.datacontext.sage.getById(id).then(data => this.sage = data);
         }
     }
 

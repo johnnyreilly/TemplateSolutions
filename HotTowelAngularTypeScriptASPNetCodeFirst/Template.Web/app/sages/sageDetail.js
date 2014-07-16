@@ -1,0 +1,42 @@
+﻿"use strict";
+var controllers;
+(function (controllers) {
+    var SageDetail = (function () {
+        function SageDetail($routeParams, common, datacontext) {
+            this.$routeParams = $routeParams;
+            this.common = common;
+            this.datacontext = datacontext;
+            this.sage = undefined;
+            this.title = "Sage Details";
+
+            var getLogFn = common.logger.getLogFn;
+            this.log = getLogFn(controllerId);
+
+            this.activate();
+        }
+        // Prototype methods
+        SageDetail.prototype.activate = function () {
+            var _this = this;
+            var id = this.$routeParams.id;
+            var dataPromises = [this.getSage(id)];
+
+            this.common.activateController(dataPromises, controllerId).then(function () {
+                _this.log("Activated Sage Details View");
+                _this.title = "Sage Details: " + _this.sage.name;
+            });
+        };
+
+        SageDetail.prototype.getSage = function (id) {
+            var _this = this;
+            return this.datacontext.sage.getById(id).then(function (data) {
+                return _this.sage = data;
+            });
+        };
+        SageDetail.$inject = ["$routeParams", "common", "datacontext"];
+        return SageDetail;
+    })();
+
+    var controllerId = "sageDetail";
+    angular.module("app").controller(controllerId, SageDetail);
+})(controllers || (controllers = {}));
+//# sourceMappingURL=sageDetail.js.map

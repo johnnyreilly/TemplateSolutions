@@ -4,7 +4,7 @@
         title: string;
         description: string;
     }
-    people: person[];
+    people: sage[];
     title: string;
 }
 
@@ -29,17 +29,17 @@
         activate();
 
         function activate() {
-            var promises: ng.IPromise<any>[] = [getMessageCount(), getPeople()];
+            var promises: ng.IPromise<any>[] = [/*getMessageCount(), */getPeople()];
             common.activateController(promises, controllerId)
                 .then(() => log('Activated Dashboard View'));
         }
 
-        function getMessageCount() {
-            return datacontext.getMessageCount().then((data) => vm.messageCount = data);
-        }
+        //function getMessageCount() {
+        //    return datacontext.getMessageCount().then((data) => vm.messageCount = data);
+        //}
 
         function getPeople() {
-            return datacontext.getPeople().then((data) => vm.people = data);
+            return datacontext.sage.getAll().then((data) => vm.people = data);
         }
     }
 })();

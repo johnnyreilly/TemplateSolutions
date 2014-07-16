@@ -162,6 +162,12 @@
     <Content Include="app\sages\sageEdit.html" />
     <Content Include="app\sages\sageDetail.html" />
     <Content Include="app\sages\sages.html" />
+    <Content Include="app\services\repository.sage.js">
+      <DependentUpon>repository.sage.ts</DependentUpon>
+    </Content>
+    <Content Include="app\services\repositories.js">
+      <DependentUpon>repositories.ts</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -171,6 +177,12 @@
     </Content>
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="app\services\repositories.js.map">
+      <DependentUpon>repositories.ts</DependentUpon>
+    </Content>
+    <Content Include="app\services\repository.sage.js.map">
+      <DependentUpon>repository.sage.ts</DependentUpon>
+    </Content>
     <None Include="Content\customtheme.less" />
     <Content Include="Content\customtheme.css">
       <DependentUpon>customtheme.less</DependentUpon>
@@ -362,7 +374,19 @@
     </Content>
     <TypeScriptCompile Include="app\proverbs\proverbs.ts" />
     <TypeScriptCompile Include="app\sages\sageEdit.ts" />
+    <Content Include="app\sages\sageEdit.js">
+      <DependentUpon>sageEdit.ts</DependentUpon>
+    </Content>
+    <Content Include="app\sages\sageEdit.js.map">
+      <DependentUpon>sageEdit.ts</DependentUpon>
+    </Content>
     <TypeScriptCompile Include="app\sages\sageDetail.ts" />
+    <Content Include="app\sages\sageDetail.js">
+      <DependentUpon>sageDetail.ts</DependentUpon>
+    </Content>
+    <Content Include="app\sages\sageDetail.js.map">
+      <DependentUpon>sageDetail.ts</DependentUpon>
+    </Content>
     <TypeScriptCompile Include="app\sages\sages.ts" />
     <Content Include="app\sages\sages.js">
       <DependentUpon>sages.ts</DependentUpon>
@@ -370,6 +394,8 @@
     <Content Include="app\sages\sages.js.map">
       <DependentUpon>sages.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="app\services\repository.sage.ts" />
+    <TypeScriptCompile Include="app\services\repositories.ts" />
     <TypeScriptCompile Include="app\services\datacontext.ts" />
     <Content Include="app\services\datacontext.js">
       <DependentUpon>datacontext.ts</DependentUpon>
@@ -383,6 +409,13 @@
     </Content>
     <Content Include="app\services\directives.js.map">
       <DependentUpon>directives.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="app\services\repository.proverb.ts" />
+    <Content Include="app\services\repository.proverb.js">
+      <DependentUpon>repository.proverb.ts</DependentUpon>
+    </Content>
+    <Content Include="app\services\repository.proverb.js.map">
+      <DependentUpon>repository.proverb.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
@@ -438,7 +471,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63096</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

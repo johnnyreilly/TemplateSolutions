@@ -1,39 +1,25 @@
-interface person {
-    firstName: string;
-    lastName: string;
-    age: number;
-    location: string;
-}
-
-interface proverb {
-    id: number;
-    userId: number;
-    user: sage;
-    text: string;
-}
-
-interface sage {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-}
+//interface person {
+//    firstName: string;
+//    lastName: string;
+//    age: number;
+//    location: string;
+//}
 
 interface datacontext {
-    getMessageCount: () => ng.IPromise<number>;
-    getPeople: () => ng.IPromise<person[]>;
-    getProverbs: () => ng.IPromise<proverb[]>;
-    getSage: (id: number) => ng.IPromise<sage>;
-    getSages: () => ng.IPromise<sage[]>;
+    //getMessageCount: () => ng.IPromise<number>;
+    //getPeople: () => ng.IPromise<person[]>;
+
+    proverb: repositoryProverb;
+    sage: repositorySage;
 }
 
 (function () {
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['$http', 'common', datacontext]);
+    angular.module('app').factory(serviceId, ["$http", "common", "repositories", datacontext]);
 
-    function datacontext($http: ng.IHttpService, common: common) {
+    function datacontext($http: ng.IHttpService, common: common, repositories: repositories) {
 
         var $q = common.$q;
         var getLogFn = common.logger.getLogFn;
@@ -43,16 +29,52 @@ interface datacontext {
         var rootUrl = "/api/";
 
         var service: datacontext = {
-            getMessageCount: getMessageCount,
-            getPeople: getPeople,
-            getProverbs: getProverbs,
-            getSage: getSage,
-            getSages: getSages
+            //getMessageCount: getMessageCount,
+            //getPeople: getPeople,
+
+            // Undefined members will be replaced with properties in defineLazyLoadedRepos
+            proverb: undefined,
+            sage: undefined
         };
+
+        defineLazyLoadedRepos();
 
         return service;
 
 
+        /**
+         * Replace undefined members on service with ES5 properties for each repo
+         */
+        function defineLazyLoadedRepos() {
+
+            var repoNames: string[] = [];
+            for (var key in service) {
+                if (service.hasOwnProperty(key) && (service[key] === undefined)) {
+                    repoNames.push(key);
+                }
+            }
+
+            repoNames.forEach(function (name) {
+                Object.defineProperty(service, name, {
+                    configurable: true, // will redefine this property once
+                    get: function () {
+                        // The 1st time the repo is request via this property, 
+                        // we ask the repositories for it (which will inject it).
+                        var repo = repositories.getRepo(name);
+                        // Rewrite this property to always return this repo;
+                        // no longer redefinable
+                        Object.defineProperty(service, name, {
+                            value: repo,
+                            configurable: false,
+                            enumerable: true
+                        });
+                        return repo;
+                    }
+                });
+            });
+        }
+
+        /*
         function getMessageCount() { return $q.when(72); }
 
         function getPeople() {
@@ -67,29 +89,6 @@ interface datacontext {
             ];
             return $q.when(people);
         }
-
-        function getProverbs() {
-            return $http.get<proverb[]>(rootUrl + "proverb").then(response => {
-                var proverbs = response.data;
-                log(proverbs.length + " Proverbs loaded");
-                return proverbs;
-            });
-        }
-
-        function getSage(id: number) {
-            return $http.get<sage>(rootUrl + "sage/" + id).then(response => {
-                var sage = response.data;
-                log("Sage [" + sage.id + "] loaded");
-                return sage;
-            });
-        }
-
-        function getSages() {
-            return $http.get<sage[]>(rootUrl + "sage").then(response => {
-                var sages = response.data;
-                log(sages.length + " Sages loaded");
-                return sages;
-            });
-        }
+        */
     }
 })();
