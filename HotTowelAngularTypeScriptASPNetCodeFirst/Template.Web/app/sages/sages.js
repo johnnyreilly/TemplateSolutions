@@ -1,31 +1,38 @@
-﻿(function () {
+﻿var controllers;
+(function (controllers) {
     "use strict";
 
+    var Sages = (function () {
+        function Sages(common, datacontext) {
+            this.common = common;
+            this.datacontext = datacontext;
+            this.sages = [];
+            this.title = "Sages";
+
+            var getLogFn = common.logger.getLogFn;
+            this.log = getLogFn(controllerId);
+
+            this.activate();
+        }
+        // Prototype methods
+        Sages.prototype.activate = function () {
+            var _this = this;
+            this.common.activateController([this.getSages()], controllerId).then(function () {
+                return _this.log("Activated Sages View");
+            });
+        };
+
+        Sages.prototype.getSages = function () {
+            var _this = this;
+            return this.datacontext.sage.getAll().then(function (data) {
+                return _this.sages = data;
+            });
+        };
+        Sages.$inject = ["common", "datacontext"];
+        return Sages;
+    })();
+
     var controllerId = "sages";
-
-    angular.module("app").controller(controllerId, ["common", "datacontext", sages]);
-
-    function sages(common, datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
-
-        var vm = this;
-        vm.sages = [];
-        vm.title = "Sages";
-
-        activate();
-
-        function activate() {
-            common.activateController([getSages()], controllerId).then(function () {
-                return log("Activated Sages View");
-            });
-        }
-
-        function getSages() {
-            return datacontext.sage.getAll().then(function (data) {
-                return vm.sages = data;
-            });
-        }
-    }
-})();
+    angular.module("app").controller(controllerId, Sages);
+})(controllers || (controllers = {}));
 //# sourceMappingURL=sages.js.map

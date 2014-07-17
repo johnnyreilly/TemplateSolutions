@@ -1,32 +1,45 @@
-﻿interface sagesVm {
-    sages: sage[];
-    title: string;
-}
+﻿module controllers {
 
-(function () {
     "use strict";
 
-    var controllerId = "sages";
+    interface sagesVm {
+        sages: sage[];
+        title: string;
+    }
 
-    angular.module("app").controller(controllerId,
-        ["common", "datacontext", sages]);
+    class Sages {
 
-    function sages(common: common, datacontext: datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+        log: (message: string, data?: Object, showToast?: boolean) => void;
+        sages: sage[];
+        title: string;
 
-        var vm: sagesVm = this;
-        vm.sages = [];
-        vm.title = "Sages";
+        static $inject = ["common", "datacontext"];
+        constructor(
+            private common: common,
+            private datacontext: datacontext
+            ) {
 
-        activate();
+            this.sages = [];
+            this.title = "Sages";
 
-        function activate() {
-            common.activateController([getSages()], controllerId).then(() => log("Activated Sages View"));
+            var getLogFn = common.logger.getLogFn;
+            this.log = getLogFn(controllerId);
+
+            this.activate();
         }
 
-        function getSages() {
-            return datacontext.sage.getAll().then(data => vm.sages = data);
+        // Prototype methods
+
+        activate() {
+            this.common.activateController([this.getSages()], controllerId)
+                .then(() => this.log("Activated Sages View"));
+        }
+
+        getSages() {
+            return this.datacontext.sage.getAll().then(data => this.sages = data);
         }
     }
-})();
+
+    var controllerId = "sages";
+    angular.module("app").controller(controllerId, Sages);
+}
