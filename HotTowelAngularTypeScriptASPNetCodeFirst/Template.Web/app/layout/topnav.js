@@ -1,6 +1,7 @@
-﻿"use strict";
-var controllers;
+﻿var controllers;
 (function (controllers) {
+    "use strict";
+
     var TopNav = (function () {
         function TopNav() {
             this.activate();

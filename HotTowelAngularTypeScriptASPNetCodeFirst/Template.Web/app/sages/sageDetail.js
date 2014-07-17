@@ -1,6 +1,7 @@
-﻿"use strict";
-var controllers;
+﻿var controllers;
 (function (controllers) {
+    "use strict";
+
     var SageDetail = (function () {
         function SageDetail($routeParams, common, datacontext) {
             this.$routeParams = $routeParams;

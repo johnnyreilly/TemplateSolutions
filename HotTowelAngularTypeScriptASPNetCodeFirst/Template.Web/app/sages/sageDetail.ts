@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿module controllers {
 
-module controllers {
+    "use strict";
 
     interface sageDetailRouteParams extends ng.route.IRouteParamsService {
         id: number;

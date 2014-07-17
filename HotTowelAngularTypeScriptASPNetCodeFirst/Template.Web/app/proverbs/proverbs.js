@@ -1,6 +1,7 @@
-﻿"use strict";
-var controllers;
+﻿var controllers;
 (function (controllers) {
+    "use strict";
+
     var Proverbs = (function () {
         function Proverbs($q, common, datacontext) {
             var _this = this;

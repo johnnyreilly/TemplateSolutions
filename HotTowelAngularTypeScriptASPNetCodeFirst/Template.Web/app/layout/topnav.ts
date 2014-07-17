@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿module controllers {
 
-module controllers {
+    "use strict";
 
     class TopNav {
 
