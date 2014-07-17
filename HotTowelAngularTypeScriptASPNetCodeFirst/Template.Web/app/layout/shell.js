@@ -1,49 +1,64 @@
-﻿(function () {
+﻿var controllers;
+(function (controllers) {
     "use strict";
 
-    var controllerId = "shell";
-    angular.module("app").controller(controllerId, ["$rootScope", "common", "config", shell]);
+    var Shell = (function () {
+        function Shell($rootScope, common, config) {
+            this.$rootScope = $rootScope;
+            this.common = common;
+            this.config = config;
+            this.logSuccess = common.logger.getLogFn(controllerId, "success");
+            this.busyMessage = "Please wait ...";
+            this.isBusy = true;
+            this.showSplash = true;
+            this.spinnerOptions = {
+                radius: 40,
+                lines: 7,
+                length: 0,
+                width: 30,
+                speed: 1.7,
+                corners: 1.0,
+                trail: 100,
+                color: "#F58A00"
+            };
+            this.urlSidebar = "/app/layout/sidebar.html?v=" + config.version;
+            this.urlTopNav = "/app/layout/topnav.html?v=" + config.version;
 
-    function shell($rootScope, common, config) {
-        var vm = this;
-        var logSuccess = common.logger.getLogFn(controllerId, "success");
-        var events = config.events;
-        vm.busyMessage = "Please wait ...";
-        vm.isBusy = true;
-        vm.spinnerOptions = {
-            radius: 40,
-            lines: 7,
-            length: 0,
-            width: 30,
-            speed: 1.7,
-            corners: 1.0,
-            trail: 100,
-            color: "#F58A00"
+            this.wireUpEventListeners();
+            this.activate();
+        }
+        // Prototype methods
+        Shell.prototype.activate = function () {
+            var _this = this;
+            this.common.activateController([], controllerId).then(function () {
+                _this.showSplash = false;
+                _this.logSuccess("Proverb v" + _this.config.version + " loaded!", null, true);
+            });
         };
 
-        activate();
+        Shell.prototype.wireUpEventListeners = function () {
+            var _this = this;
+            this.$rootScope.$on("$routeChangeStart", function (event, next, current) {
+                _this.toggleSpinner(true);
+            });
 
-        function activate() {
-            logSuccess("Proverb v" + config.version + " loaded!", null, true);
-            common.activateController([], controllerId);
-        }
+            this.$rootScope.$on(this.config.events.controllerActivateSuccess, function (data) {
+                _this.toggleSpinner(false);
+            });
 
-        function toggleSpinner(on) {
-            vm.isBusy = on;
-        }
+            this.$rootScope.$on(this.config.events.spinnerToggle, function (data) {
+                _this.toggleSpinner(data.show);
+            });
+        };
 
-        $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            toggleSpinner(true);
-        });
+        Shell.prototype.toggleSpinner = function (onOrOff) {
+            this.isBusy = onOrOff;
+        };
+        Shell.$inject = ["$rootScope", "common", "config"];
+        return Shell;
+    })();
 
-        $rootScope.$on(events.controllerActivateSuccess, function (data) {
-            toggleSpinner(false);
-        });
-
-        $rootScope.$on(events.spinnerToggle, function (data) {
-            toggleSpinner(data.show);
-        });
-    }
-    ;
-})();
+    var controllerId = "shell";
+    angular.module("app").controller(controllerId, Shell);
+})(controllers || (controllers = {}));
 //# sourceMappingURL=shell.js.map
