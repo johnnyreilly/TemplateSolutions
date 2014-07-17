@@ -4,7 +4,7 @@
         title: string;
         description: string;
     }
-    people: sage[];
+    sages: sage[];
     title: string;
 }
 
@@ -23,7 +23,7 @@
             description: "The Wisdom of Socrates Aruldas (and The Team)"
         };
         vm.messageCount = 0;
-        vm.people = [];
+        vm.sages = [];
         vm.title = "Dashboard";
 
         activate();
@@ -39,7 +39,7 @@
         //}
 
         function getPeople() {
-            return datacontext.sage.getAll().then((data) => vm.people = data);
+            return datacontext.sage.getAll().then((data) => vm.sages = data);
         }
     }
 })();

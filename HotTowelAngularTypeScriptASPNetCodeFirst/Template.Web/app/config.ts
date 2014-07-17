@@ -17,6 +17,8 @@ interface commonConfig {
     config: {
         controllerActivateSuccessEvent: string;
         spinnerToggleEvent: string;
+        remoteServiceRoot: string;
+        version: string;
     };
 }
 
@@ -55,6 +57,8 @@ interface commonConfig {
     app.config(["commonConfigProvider", function (cfg: commonConfig) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
         cfg.config.spinnerToggleEvent = config.events.spinnerToggle;
+        cfg.config.remoteServiceRoot = config.remoteServiceRoot;
+        cfg.config.version = config.version;
     }]);
     //#endregion
 })(window["appConfig"]);

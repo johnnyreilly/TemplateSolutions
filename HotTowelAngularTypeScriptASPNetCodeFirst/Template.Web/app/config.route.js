@@ -7,10 +7,11 @@
     app.constant("routes", getRoutes());
 
     // Configure the routes and route resolvers
-    app.config(["$routeProvider", "routes", routeConfigurator]);
+    app.config(["$routeProvider", "routes", "commonConfigProvider", routeConfigurator]);
 
-    function routeConfigurator($routeProvider, routes) {
+    function routeConfigurator($routeProvider, routes, commonConfig) {
         routes.forEach(function (r) {
+            r.config.templateUrl += "?v=" + commonConfig.config.version;
             $routeProvider.when(r.url, r.config);
         });
         $routeProvider.otherwise({ redirectTo: "/" });

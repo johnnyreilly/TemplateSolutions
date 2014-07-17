@@ -13,7 +13,7 @@
             description: "The Wisdom of Socrates Aruldas (and The Team)"
         };
         vm.messageCount = 0;
-        vm.people = [];
+        vm.sages = [];
         vm.title = "Dashboard";
 
         activate();
@@ -30,7 +30,7 @@
         //}
         function getPeople() {
             return datacontext.sage.getAll().then(function (data) {
-                return vm.people = data;
+                return vm.sages = data;
             });
         }
     }
