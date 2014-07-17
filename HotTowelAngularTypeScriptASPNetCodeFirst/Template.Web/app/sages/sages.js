@@ -1,9 +1,9 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
-    var controllerId = 'sages';
+    var controllerId = "sages";
 
-    angular.module('app').controller(controllerId, ['common', 'datacontext', sages]);
+    angular.module("app").controller(controllerId, ["common", "datacontext", sages]);
 
     function sages(common, datacontext) {
         var getLogFn = common.logger.getLogFn;
@@ -11,13 +11,13 @@
 
         var vm = this;
         vm.sages = [];
-        vm.title = 'Sages';
+        vm.title = "Sages";
 
         activate();
 
         function activate() {
             common.activateController([getSages()], controllerId).then(function () {
-                return log('Activated Sages View');
+                return log("Activated Sages View");
             });
         }
 

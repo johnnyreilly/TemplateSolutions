@@ -1,29 +1,29 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
-    var app = angular.module('app');
+    var app = angular.module("app");
 
-    app.directive('ccImgPerson', [
-        'config', function (config) {
+    app.directive("ccImgPerson", [
+        "config", function (config) {
             //Usage:
             //<img data-cc-img-person="{{s.speaker.imageSource}}"/>
             var basePath = config.imageSettings.imageBasePath;
             var unknownImage = config.imageSettings.unknownPersonImageSource;
             var directive = {
                 link: link,
-                restrict: 'A'
+                restrict: "A"
             };
             return directive;
 
             function link(scope, element, attrs) {
-                attrs.$observe('ccImgPerson', function (value) {
+                attrs.$observe("ccImgPerson", function (value) {
                     value = basePath + (value || unknownImage);
-                    attrs.$set('src', value);
+                    attrs.$set("src", value);
                 });
             }
         }]);
 
-    app.directive('ccSidebar', function () {
+    app.directive("ccSidebar", function () {
         // Opens and clsoes the sidebar menu.
         // Usage:
         //  <div data-cc-sidebar>
@@ -31,18 +31,18 @@
         //  <div data-cc-sidebar class="sidebar">
         var directive = {
             link: link,
-            restrict: 'A'
+            restrict: "A"
         };
         return directive;
 
         function link(scope, element, attrs) {
-            var $sidebarInner = element.find('.sidebar-inner');
-            var $dropdownElement = element.find('.sidebar-dropdown a');
-            element.addClass('sidebar');
+            var $sidebarInner = element.find(".sidebar-inner");
+            var $dropdownElement = element.find(".sidebar-dropdown a");
+            element.addClass("sidebar");
             $dropdownElement.click(dropdown);
 
             function dropdown(e) {
-                var dropClass = 'dropy';
+                var dropClass = "dropy";
                 e.preventDefault();
                 if (!$dropdownElement.hasClass(dropClass)) {
                     hideAllSidebars();
@@ -55,13 +55,13 @@
 
                 function hideAllSidebars() {
                     $sidebarInner.slideUp(350);
-                    $('.sidebar-dropdown a').removeClass(dropClass);
+                    $(".sidebar-dropdown a").removeClass(dropClass);
                 }
             }
         }
     });
 
-    app.directive('ccWidgetClose', function () {
+    app.directive("ccWidgetClose", function () {
         // Usage:
         // <a data-cc-widget-close></a>
         // Creates:
@@ -71,13 +71,13 @@
         var directive = {
             link: link,
             template: '<i class="fa fa-remove"></i>',
-            restrict: 'A'
+            restrict: "A"
         };
         return directive;
 
         function link(scope, element, attrs) {
-            attrs.$set('href', '#');
-            attrs.$set('wclose', undefined);
+            attrs.$set("href", "#");
+            attrs.$set("wclose", undefined);
             element.click(close);
 
             function close(e) {
@@ -87,7 +87,7 @@
         }
     });
 
-    app.directive('ccWidgetMinimize', function () {
+    app.directive("ccWidgetMinimize", function () {
         // Usage:
         // <a data-cc-widget-minimize></a>
         // Creates:
@@ -95,53 +95,53 @@
         var directive = {
             link: link,
             template: '<i class="fa fa-chevron-up"></i>',
-            restrict: 'A'
+            restrict: "A"
         };
         return directive;
 
         function link(scope, element, attrs) {
-            //$('body').on('click', '.widget .wminimize', minimize);
-            attrs.$set('href', '#');
-            attrs.$set('wminimize', undefined);
+            //$("body").on("click", ".widget .wminimize", minimize);
+            attrs.$set("href", "#");
+            attrs.$set("wminimize", undefined);
             element.click(minimize);
 
             function minimize(e) {
                 e.preventDefault();
-                var $wcontent = element.parent().parent().next('.widget-content');
-                var iElement = element.children('i');
-                if ($wcontent.is(':visible')) {
-                    iElement.removeClass('fa fa-chevron-up');
-                    iElement.addClass('fa fa-chevron-down');
+                var $wcontent = element.parent().parent().next(".widget-content");
+                var iElement = element.children("i");
+                if ($wcontent.is(":visible")) {
+                    iElement.removeClass("fa fa-chevron-up");
+                    iElement.addClass("fa fa-chevron-down");
                 } else {
-                    iElement.removeClass('fa fa-chevron-down');
-                    iElement.addClass('fa fa-chevron-up');
+                    iElement.removeClass("fa fa-chevron-down");
+                    iElement.addClass("fa fa-chevron-up");
                 }
                 $wcontent.toggle(500);
             }
         }
     });
 
-    app.directive('ccScrollToTop', [
-        '$window',
+    app.directive("ccScrollToTop", [
+        "$window",
         function ($window) {
             var directive = {
                 link: link,
                 template: '<a href="#"><i class="fa fa-chevron-up"></i></a>',
-                restrict: 'A'
+                restrict: "A"
             };
             return directive;
 
             function link(scope, element, attrs) {
                 var $win = $($window);
-                element.addClass('totop');
+                element.addClass("totop");
                 $win.scroll(toggleIcon);
 
-                element.find('a').click(function (e) {
+                element.find("a").click(function (e) {
                     e.preventDefault();
 
                     // Learning Point: $anchorScroll works, but no animation
                     //$anchorScroll();
-                    $('body').animate({ scrollTop: 0 }, 500);
+                    $("body").animate({ scrollTop: 0 }, 500);
                 });
 
                 function toggleIcon() {
@@ -151,15 +151,15 @@
         }
     ]);
 
-    app.directive('ccSpinner', [
-        '$window', function ($window) {
+    app.directive("ccSpinner", [
+        "$window", function ($window) {
             // Description:
             //  Creates a new Spinner and sets its options
             // Usage:
             //  <div data-cc-spinner="vm.spinnerOptions"></div>
             var directive = {
                 link: link,
-                restrict: 'A'
+                restrict: "A"
             };
             return directive;
 
@@ -175,24 +175,24 @@
             }
         }]);
 
-    app.directive('ccWidgetHeader', function () {
+    app.directive("ccWidgetHeader", function () {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
         var directive = {
             link: link,
             scope: {
-                'title': '@',
-                'subtitle': '@',
-                'rightText': '@',
-                'allowCollapse': '@'
+                "title": "@",
+                "subtitle": "@",
+                "rightText": "@",
+                "allowCollapse": "@"
             },
-            templateUrl: '/app/layout/widgetheader.html',
-            restrict: 'A'
+            templateUrl: "/app/layout/widgetheader.html",
+            restrict: "A"
         };
         return directive;
 
         function link(scope, element, attrs) {
-            attrs.$set('class', 'widget-head');
+            attrs.$set("class", "widget-head");
         }
     });
 })();

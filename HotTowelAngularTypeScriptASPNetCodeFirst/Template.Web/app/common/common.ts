@@ -12,22 +12,22 @@ interface common {
 }
 
 (function () {
-    'use strict';
+    "use strict";
 
     // Define the common module 
     // Contains services:
     //  - common
     //  - logger
     //  - spinner
-    var commonModule = angular.module('common', []);
+    var commonModule = angular.module("common", []);
 
     // Must configure the common service and set its 
     // events via the commonConfigProvider
-    commonModule.provider('commonConfig', function () {
+    commonModule.provider("commonConfig", function () {
         this.config = {
             // These are the properties we need to set
-            //controllerActivateSuccessEvent: '',
-            //spinnerToggleEvent: ''
+            //controllerActivateSuccessEvent: "",
+            //spinnerToggleEvent: ""
         };
 
         this.$get = function (): commonConfig {
@@ -37,8 +37,8 @@ interface common {
         };
     });
 
-    commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+    commonModule.factory("common",
+        ["$q", "$rootScope", "$timeout", "commonConfig", "logger", common]);
 
     function common(
         $q: ng.IQService,
@@ -84,9 +84,9 @@ interface common {
             // if only vm and list parameters were passed, set others by naming convention 
             if (!filteredList) {
                 // assuming list is named sessions, filteredList is filteredSessions
-                filteredList = 'filtered' + list[0].toUpperCase() + list.substr(1).toLowerCase(); // string
+                filteredList = "filtered" + list[0].toUpperCase() + list.substr(1).toLowerCase(); // string
                 // filter function is named sessionFilter
-                filter = list + 'Filter'; // function in string form
+                filter = list + "Filter"; // function in string form
             }
 
             // create the filtering function we will call from here

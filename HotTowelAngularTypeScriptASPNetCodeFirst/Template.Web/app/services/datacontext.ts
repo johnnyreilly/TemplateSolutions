@@ -14,18 +14,18 @@ interface datacontext {
 }
 
 (function () {
-    'use strict';
+    "use strict";
 
-    var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ["$http", "common", "repositories", datacontext]);
+    var serviceId = "datacontext";
+    angular.module("app").factory(serviceId, ["$http", "common", "repositories", datacontext]);
 
     function datacontext($http: ng.IHttpService, common: common, repositories: repositories) {
 
         var $q = common.$q;
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(serviceId);
-        var logError = getLogFn(serviceId, 'error');
-        var logSuccess = getLogFn(serviceId, 'success');
+        var logError = getLogFn(serviceId, "error");
+        var logSuccess = getLogFn(serviceId, "success");
 
         var service: datacontext = {
             //getMessageCount: getMessageCount,

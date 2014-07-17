@@ -6,17 +6,17 @@
 //}
 
 (function () {
-    'use strict';
+    "use strict";
 
-    var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ["$http", "common", "repositories", datacontext]);
+    var serviceId = "datacontext";
+    angular.module("app").factory(serviceId, ["$http", "common", "repositories", datacontext]);
 
     function datacontext($http, common, repositories) {
         var $q = common.$q;
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(serviceId);
-        var logError = getLogFn(serviceId, 'error');
-        var logSuccess = getLogFn(serviceId, 'success');
+        var logError = getLogFn(serviceId, "error");
+        var logSuccess = getLogFn(serviceId, "success");
 
         var service = {
             //getMessageCount: getMessageCount,

@@ -1,8 +1,8 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
-    var controllerId = 'sidebar';
-    angular.module('app').controller(controllerId, ['$route', 'config', 'routes', sidebar]);
+    var controllerId = "sidebar";
+    angular.module("app").controller(controllerId, ["$route", "config", "routes", sidebar]);
 
     function sidebar($route, config, routes) {
         var vm = this;
@@ -25,10 +25,10 @@
 
         function isCurrent(route) {
             if (!route.config.title || !$route.current || !$route.current.title) {
-                return '';
+                return "";
             }
             var menuName = route.config.title;
-            return $route.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
+            return $route.current.title.substr(0, menuName.length) === menuName ? "current" : "";
         }
     }
     ;

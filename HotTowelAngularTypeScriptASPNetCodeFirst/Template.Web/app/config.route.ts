@@ -12,15 +12,15 @@ interface configRouteConfig extends ng.route.IRoute {
 }
 
 (function () {
-    'use strict';
+    "use strict";
 
-    var app = angular.module('app');
+    var app = angular.module("app");
 
     // Collect the routes
-    app.constant('routes', getRoutes());
+    app.constant("routes", getRoutes());
     
     // Configure the routes and route resolvers
-    app.config(['$routeProvider', 'routes', routeConfigurator]);
+    app.config(["$routeProvider", "routes", routeConfigurator]);
 
 
     function routeConfigurator($routeProvider: ng.route.IRouteProvider, routes: configRoute[]) {
@@ -28,61 +28,61 @@ interface configRouteConfig extends ng.route.IRoute {
         routes.forEach(function (r) {
             $routeProvider.when(r.url, r.config);
         });
-        $routeProvider.otherwise({ redirectTo: '/' });
+        $routeProvider.otherwise({ redirectTo: "/" });
     }
 
     // Define the routes 
     function getRoutes(): configRoute[] {
         return [
             {
-                url: '/',
+                url: "/",
                 config: {
-                    templateUrl: 'app/dashboard/dashboard.html',
-                    title: 'dashboard',
+                    templateUrl: "app/dashboard/dashboard.html",
+                    title: "dashboard",
                     settings: {
                         nav: 1,
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
                     }
                 }
             }, {
-                url: '/sages',
+                url: "/sages",
                 config: {
-                    title: 'sages',
-                    templateUrl: 'app/sages/sages.html',
+                    title: "sages",
+                    templateUrl: "app/sages/sages.html",
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-users"></i> Sages'
                     }
                 }
             }, {
-                url: '/sages/detail/:id',
+                url: "/sages/detail/:id",
                 config: {
-                    title: 'sage details',
-                    templateUrl: 'app/sages/sageDetail.html',
+                    title: "sage details",
+                    templateUrl: "app/sages/sageDetail.html",
                     settings: {}
                 }
             }, {
-                url: '/sages/edit/:id',
+                url: "/sages/edit/:id",
                 config: {
-                    title: 'sage edit',
-                    templateUrl: 'app/sages/sageEdit.html',
+                    title: "sage edit",
+                    templateUrl: "app/sages/sageEdit.html",
                     settings: {}
                 }
             }, {
-                url: '/proverbs',
+                url: "/proverbs",
                 config: {
-                    title: 'proverbs',
-                    templateUrl: 'app/proverbs/proverbs.html',
+                    title: "proverbs",
+                    templateUrl: "app/proverbs/proverbs.html",
                     settings: {
                         nav: 3,
                         content: '<i class="fa fa-comment"></i> Proverbs'
                     }
                 }
             }, {
-                url: '/admin',
+                url: "/admin",
                 config: {
-                    title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
+                    title: "admin",
+                    templateUrl: "app/admin/admin.html",
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-lock"></i> Admin'

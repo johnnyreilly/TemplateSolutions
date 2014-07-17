@@ -1,22 +1,22 @@
 ﻿// Include in index.html so that app level exceptions are handled.
 // Exclude from testRunner.html which should run exactly what it wants to run
 (function () {
-    'use strict';
+    "use strict";
     
-    var app = angular.module('app');
+    var app = angular.module("app");
 
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
 
-    app.config(['$provide', function ($provide: ng.auto.IProvideService) {
-        $provide.decorator('$exceptionHandler',
-            ['$delegate', 'config', 'logger', extendExceptionHandler]);
+    app.config(["$provide", function ($provide: ng.auto.IProvideService) {
+        $provide.decorator("$exceptionHandler",
+            ["$delegate", "config", "logger", extendExceptionHandler]);
     }]);
     
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate: ng.IExceptionHandlerService, config: config, logger: logger) {
         var appErrorPrefix = config.appErrorPrefix;
-        var logError = logger.getLogFn('app', 'error');
+        var logError = logger.getLogFn("app", "error");
         return function (exception: Error, cause: string) {
             $delegate(exception, cause);
             if (appErrorPrefix && exception.message.indexOf(appErrorPrefix) === 0) { return; }

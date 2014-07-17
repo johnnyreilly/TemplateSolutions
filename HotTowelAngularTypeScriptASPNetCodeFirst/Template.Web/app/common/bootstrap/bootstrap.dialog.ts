@@ -20,11 +20,11 @@ interface bootstrapDialogScope extends ng.IScope {
 }
 
 (function () {
-    'use strict';
+    "use strict";
 
-    var bootstrapModule = angular.module('common.bootstrap', ['ui.bootstrap']);
+    var bootstrapModule = angular.module("common.bootstrap", ["ui.bootstrap"]);
 
-    bootstrapModule.factory('bootstrap.dialog', ['$modal', '$templateCache', modalDialog]);
+    bootstrapModule.factory("bootstrap.dialog", ["$modal", "$templateCache", modalDialog]);
 
     function modalDialog($modal: ng.ui.bootstrap.IModalService, $templateCache: ng.ITemplateCacheService) {
         var service: bootstrapDialog = {
@@ -32,7 +32,7 @@ interface bootstrapDialogScope extends ng.IScope {
             confirmationDialog: confirmationDialog
         };
 
-        $templateCache.put('modalDialog.tpl.html', 
+        $templateCache.put("modalDialog.tpl.html", 
             '<div>' +
             '    <div class="modal-header">' +
             '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">&times;</button>' +
@@ -50,9 +50,9 @@ interface bootstrapDialogScope extends ng.IScope {
         return service;
 
         function deleteDialog(itemName: string) {
-            var title = 'Confirm Delete';
-            itemName = itemName || 'item';
-            var msg = 'Delete ' + itemName + '?';
+            var title = "Confirm Delete";
+            itemName = itemName || "item";
+            var msg = "Delete " + itemName + "?";
 
             return confirmationDialog(title, msg);
         }
@@ -60,7 +60,7 @@ interface bootstrapDialogScope extends ng.IScope {
         function confirmationDialog(title: string, msg: string, okText?: string, cancelText?: string) {
 
             var modalOptions = {
-                templateUrl: 'modalDialog.tpl.html',
+                templateUrl: "modalDialog.tpl.html",
                 controller: ModalInstance,
                 keyboard: true,
                 resolve: {
@@ -79,13 +79,13 @@ interface bootstrapDialogScope extends ng.IScope {
         }
     }
 
-    var ModalInstance = ['$scope', '$modalInstance', 'options',
+    var ModalInstance = ["$scope", "$modalInstance", "options",
         function ($scope: bootstrapDialogScope, $modalInstance: ng.ui.bootstrap.IModalServiceInstance, options: bootstrapDialogOptions) {
-            $scope.title = options.title || 'Title';
-            $scope.message = options.message || '';
-            $scope.okText = options.okText || 'OK';
-            $scope.cancelText = options.cancelText || 'Cancel';
-            $scope.ok = function () { $modalInstance.close('ok'); };
-            $scope.cancel = function () { $modalInstance.dismiss('cancel'); };
+            $scope.title = options.title || "Title";
+            $scope.message = options.message || "";
+            $scope.okText = options.okText || "OK";
+            $scope.cancelText = options.cancelText || "Cancel";
+            $scope.ok = function () { $modalInstance.close("ok"); };
+            $scope.cancel = function () { $modalInstance.dismiss("cancel"); };
         }];
 })();

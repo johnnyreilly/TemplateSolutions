@@ -1,14 +1,14 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
-    var controllerId = 'shell';
-    angular.module('app').controller(controllerId, ['$rootScope', 'common', 'config', shell]);
+    var controllerId = "shell";
+    angular.module("app").controller(controllerId, ["$rootScope", "common", "config", shell]);
 
     function shell($rootScope, common, config) {
         var vm = this;
-        var logSuccess = common.logger.getLogFn(controllerId, 'success');
+        var logSuccess = common.logger.getLogFn(controllerId, "success");
         var events = config.events;
-        vm.busyMessage = 'Please wait ...';
+        vm.busyMessage = "Please wait ...";
         vm.isBusy = true;
         vm.spinnerOptions = {
             radius: 40,
@@ -18,13 +18,13 @@
             speed: 1.7,
             corners: 1.0,
             trail: 100,
-            color: '#F58A00'
+            color: "#F58A00"
         };
 
         activate();
 
         function activate() {
-            logSuccess('Proverb v' + config.version + ' loaded!', null, true);
+            logSuccess("Proverb v" + config.version + " loaded!", null, true);
             common.activateController([], controllerId);
         }
 
@@ -32,7 +32,7 @@
             vm.isBusy = on;
         }
 
-        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
             toggleSpinner(true);
         });
 
