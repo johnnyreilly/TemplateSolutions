@@ -24,7 +24,7 @@
         activate();
 
         function activate() {
-            logSuccess('Proverb loaded!', null, true);
+            logSuccess('Proverb v' + config.version + ' loaded!', null, true);
             common.activateController([], controllerId);
         }
 

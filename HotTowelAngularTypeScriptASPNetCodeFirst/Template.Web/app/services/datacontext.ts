@@ -26,7 +26,6 @@ interface datacontext {
         var log = getLogFn(serviceId);
         var logError = getLogFn(serviceId, 'error');
         var logSuccess = getLogFn(serviceId, 'success');
-        var rootUrl = "/api/";
 
         var service: datacontext = {
             //getMessageCount: getMessageCount,

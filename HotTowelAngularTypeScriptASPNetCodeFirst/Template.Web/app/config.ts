@@ -20,7 +20,7 @@ interface commonConfig {
     };
 }
 
-(function () {
+(function (appConfig: { remoteServiceRoot: string; version: string; }) {
     'use strict';
 
     var app = angular.module('app');
@@ -28,8 +28,6 @@ interface commonConfig {
     // Configure Toastr
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = "toast-bottom-right";
-
-    var remoteServiceRoot = "/api/";
 
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
@@ -40,8 +38,8 @@ interface commonConfig {
         appErrorPrefix: '[Error] ', //Configure the exceptionHandler decorator
         docTitle: 'Proverb: ',
         events: events,
-        remoteServiceRoot: remoteServiceRoot,
-        version: '1.0.0'
+        remoteServiceRoot: appConfig.remoteServiceRoot,
+        version: appConfig.version
     };
 
     app.value('config', config);
@@ -59,4 +57,4 @@ interface commonConfig {
         cfg.config.spinnerToggleEvent = config.events.spinnerToggle;
     }]);
     //#endregion
-})();
+})(window["appConfig"]);

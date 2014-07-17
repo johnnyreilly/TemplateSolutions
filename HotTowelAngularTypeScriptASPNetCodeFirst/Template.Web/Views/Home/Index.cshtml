@@ -1,4 +1,10 @@
 ﻿@section scripts {
+    <script>@* Server config to inject into client code *@
+        window.appConfig = {
+            remoteServiceRoot: "@Url.Content("~/api/")",
+            version: "@(VersionHelper.Version)"
+        };
+    </script>
     @Scripts.Render("~/app")
 }
 

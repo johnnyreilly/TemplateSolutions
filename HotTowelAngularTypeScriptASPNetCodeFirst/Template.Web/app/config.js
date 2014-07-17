@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function (appConfig) {
     'use strict';
 
     var app = angular.module('app');
@@ -6,8 +6,6 @@
     // Configure Toastr
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = "toast-bottom-right";
-
-    var remoteServiceRoot = "/api/";
 
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
@@ -18,8 +16,8 @@
         appErrorPrefix: '[Error] ',
         docTitle: 'Proverb: ',
         events: events,
-        remoteServiceRoot: remoteServiceRoot,
-        version: '1.0.0'
+        remoteServiceRoot: appConfig.remoteServiceRoot,
+        version: appConfig.version
     };
 
     app.value('config', config);
@@ -39,5 +37,5 @@
             cfg.config.spinnerToggleEvent = config.events.spinnerToggle;
         }]);
     //#endregion
-})();
+})(window["appConfig"]);
 //# sourceMappingURL=config.js.map
