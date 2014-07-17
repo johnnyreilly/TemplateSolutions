@@ -1,38 +1,44 @@
-﻿(function () {
+﻿var controllers;
+(function (controllers) {
     "use strict";
-    var controllerId = "dashboard";
-    angular.module("app").controller(controllerId, ["common", "datacontext", dashboard]);
 
-    function dashboard(common, datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+    var Dashboard = (function () {
+        function Dashboard(common, datacontext) {
+            this.common = common;
+            this.datacontext = datacontext;
+            this.news = {
+                title: "Proverb",
+                description: "The Wisdom of Socrates Aruldas (and The Team)"
+            };
+            this.messageCount = 0;
+            this.sages = [];
+            this.title = "Dashboard";
 
-        var vm = this;
-        vm.news = {
-            title: "Proverb",
-            description: "The Wisdom of Socrates Aruldas (and The Team)"
+            var getLogFn = common.logger.getLogFn;
+            this.log = getLogFn(controllerId);
+
+            this.activate();
+        }
+        // Prototype methods
+        Dashboard.prototype.activate = function () {
+            var _this = this;
+            var promises = [this.getSages()];
+            this.common.activateController(promises, controllerId).then(function () {
+                return _this.log("Activated Dashboard View");
+            });
         };
-        vm.messageCount = 0;
-        vm.sages = [];
-        vm.title = "Dashboard";
 
-        activate();
-
-        function activate() {
-            var promises = [getPeople()];
-            common.activateController(promises, controllerId).then(function () {
-                return log("Activated Dashboard View");
+        Dashboard.prototype.getSages = function () {
+            var _this = this;
+            return this.datacontext.sage.getAll().then(function (data) {
+                return _this.sages = data;
             });
-        }
+        };
+        Dashboard.$inject = ["common", "datacontext"];
+        return Dashboard;
+    })();
 
-        //function getMessageCount() {
-        //    return datacontext.getMessageCount().then((data) => vm.messageCount = data);
-        //}
-        function getPeople() {
-            return datacontext.sage.getAll().then(function (data) {
-                return vm.sages = data;
-            });
-        }
-    }
-})();
+    var controllerId = "dashboard";
+    angular.module("app").controller(controllerId, Dashboard);
+})(controllers || (controllers = {}));
 //# sourceMappingURL=dashboard.js.map

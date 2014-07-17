@@ -2,11 +2,6 @@
 
     "use strict";
 
-    interface sagesVm {
-        sages: sage[];
-        title: string;
-    }
-
     class Sages {
 
         log: (message: string, data?: Object, showToast?: boolean) => void;

@@ -2,7 +2,7 @@
 
     "use strict";
 
-    interface sageDetailRouteParams extends ng.route.IRouteParamsService {
+    interface sageEditRouteParams extends ng.route.IRouteParamsService {
         id: number;
     }
 
@@ -14,7 +14,7 @@
 
         static $inject = ["$routeParams", "common", "datacontext"];
         constructor(
-            private $routeParams: sageDetailRouteParams,
+            private $routeParams: sageEditRouteParams,
             private common: common,
             private datacontext: datacontext
             ) {

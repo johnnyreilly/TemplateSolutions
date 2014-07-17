@@ -1,45 +1,51 @@
-﻿interface dashboardVm {
-    messageCount: number;
-    news: {
-        title: string;
-        description: string;
-    }
-    sages: sage[];
-    title: string;
-}
+﻿module controllers {
 
-(function () {
     "use strict";
-    var controllerId = "dashboard";
-    angular.module("app").controller(controllerId, ["common", "datacontext", dashboard]);
 
-    function dashboard(common: common, datacontext: datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+    class Dashboard {
 
-        var vm: dashboardVm = this;
-        vm.news = {
-            title: "Proverb",
-            description: "The Wisdom of Socrates Aruldas (and The Team)"
-        };
-        vm.messageCount = 0;
-        vm.sages = [];
-        vm.title = "Dashboard";
+        log: (message: string, data?: Object, showToast?: boolean) => void;
+        messageCount: number;
+        news: {
+            title: string;
+            description: string;
+        }
+        sages: sage[];
+        title: string;
 
-        activate();
+        static $inject = ["common", "datacontext"];
+        constructor(
+            private common: common,
+            private datacontext: datacontext
+            ) {
 
-        function activate() {
-            var promises: ng.IPromise<any>[] = [/*getMessageCount(), */getPeople()];
-            common.activateController(promises, controllerId)
-                .then(() => log("Activated Dashboard View"));
+            this.news = {
+                title: "Proverb",
+                description: "The Wisdom of Socrates Aruldas (and The Team)"
+            };
+            this.messageCount = 0;
+            this.sages = [];
+            this.title = "Dashboard";
+
+            var getLogFn = common.logger.getLogFn;
+            this.log = getLogFn(controllerId);
+
+            this.activate();
         }
 
-        //function getMessageCount() {
-        //    return datacontext.getMessageCount().then((data) => vm.messageCount = data);
-        //}
+        // Prototype methods
 
-        function getPeople() {
-            return datacontext.sage.getAll().then((data) => vm.sages = data);
+        activate() {
+            var promises: ng.IPromise<any>[] = [/*getMessageCount(), */this.getSages()];
+            this.common.activateController(promises, controllerId)
+                .then(() => this.log("Activated Dashboard View"));
+        }
+
+        getSages() {
+            return this.datacontext.sage.getAll().then(data => this.sages = data);
         }
     }
-})();
+
+    var controllerId = "dashboard";
+    angular.module("app").controller(controllerId, Dashboard);
+}
