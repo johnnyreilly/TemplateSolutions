@@ -9,8 +9,7 @@
             this.sages = [];
             this.title = "Sages";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

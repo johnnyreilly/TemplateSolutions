@@ -8,7 +8,7 @@
 
     class SageDetail {
 
-        log: (message: string, data?: Object, showToast?: boolean) => void;
+        log: loggerFunction;
         sage: sage;
         title: string;
 
@@ -22,8 +22,7 @@
             this.sage = undefined;
             this.title = "Sage Details";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

@@ -1,14 +1,18 @@
 interface loggerFunction {
+    (message: string, data?: Object, showToast?: boolean): void;
+}
+
+interface loggerFunctionWithSource {
     (message: string, data: Object, source: string, showToast: boolean): void;
 }
 
 interface logger {
     [fnName: string]: any;
-    getLogFn(moduleId: string, fnName?: string): (message: string, data?: Object, showToast?: boolean) => void;
-    log: loggerFunction;
-    logError: loggerFunction;
-    logSuccess: loggerFunction;
-    logWarning: loggerFunction;
+    getLogFn(moduleId: string, fnName?: string): loggerFunction;
+    log: loggerFunctionWithSource;
+    logError: loggerFunctionWithSource;
+    logSuccess: loggerFunctionWithSource;
+    logWarning: loggerFunctionWithSource;
 }
 
 (function () {
@@ -40,7 +44,7 @@ interface logger {
                     fnName = "logWarning"; break;
             }
 
-            var logFn: loggerFunction = service[fnName] || service.log;
+            var logFn: loggerFunctionWithSource = service[fnName] || service.log;
             return function (msg: string, data: Object, showToast: boolean) {
                 logFn(msg, data, moduleId, (showToast === undefined) ? true : showToast);
             };

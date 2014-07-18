@@ -14,8 +14,7 @@
             this.sages = [];
             this.title = "Dashboard";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

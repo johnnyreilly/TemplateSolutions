@@ -4,7 +4,7 @@
 
     class Proverbs {
 
-        log: (message: string, data?: Object, showToast?: boolean) => void;
+        log: loggerFunction;
         proverbs: proverb[];
         selectedSage: sage;
         sages: sage[];
@@ -22,8 +22,7 @@
             this.selectedSage = undefined;
             this.title = "Proverbs";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

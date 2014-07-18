@@ -10,8 +10,7 @@
             this.sage = undefined;
             this.title = "Sage Details";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

@@ -8,13 +8,14 @@
 
     class SageEdit {
 
-        log: (message: string, data?: Object, showToast?: boolean) => void;
+        log: loggerFunction;
         sage: sage;
         title: string;
 
-        static $inject = ["$routeParams", "common", "datacontext"];
+        static $inject = ["$routeParams", "$scope", "common", "datacontext"];
         constructor(
             private $routeParams: sageEditRouteParams,
+            private $scope: ng.IScope,
             private common: common,
             private datacontext: datacontext
             ) {
@@ -22,8 +23,7 @@
             this.sage = undefined;
             this.title = "Sage Edit";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }

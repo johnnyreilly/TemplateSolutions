@@ -10,7 +10,7 @@
 
         busyMessage: string;
         isBusy: boolean;
-        logSuccess: (message: string, data?: Object, showToast?: boolean) => void;
+        logSuccess: loggerFunction;
         spinnerOptions: SpinnerOptions;
         urlSidebar: string;
         urlTopNav: string;

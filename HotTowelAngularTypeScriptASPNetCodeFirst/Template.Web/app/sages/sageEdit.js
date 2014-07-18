@@ -3,15 +3,15 @@
     "use strict";
 
     var SageEdit = (function () {
-        function SageEdit($routeParams, common, datacontext) {
+        function SageEdit($routeParams, $scope, common, datacontext) {
             this.$routeParams = $routeParams;
+            this.$scope = $scope;
             this.common = common;
             this.datacontext = datacontext;
             this.sage = undefined;
             this.title = "Sage Edit";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }
@@ -33,7 +33,7 @@
                 return _this.sage = data;
             });
         };
-        SageEdit.$inject = ["$routeParams", "common", "datacontext"];
+        SageEdit.$inject = ["$routeParams", "$scope", "common", "datacontext"];
         return SageEdit;
     })();
 

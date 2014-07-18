@@ -4,7 +4,7 @@
 
     class Dashboard {
 
-        log: (message: string, data?: Object, showToast?: boolean) => void;
+        log: loggerFunction;
         messageCount: number;
         news: {
             title: string;
@@ -27,8 +27,7 @@
             this.sages = [];
             this.title = "Dashboard";
 
-            var getLogFn = common.logger.getLogFn;
-            this.log = getLogFn(controllerId);
+            this.log = common.logger.getLogFn(controllerId);
 
             this.activate();
         }
