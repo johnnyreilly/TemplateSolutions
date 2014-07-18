@@ -10,7 +10,6 @@
             this.logSuccess = common.logger.getLogFn(controllerId, "success");
             this.busyMessage = "Please wait ...";
             this.isBusy = true;
-            this.showSplash = true;
             this.spinnerOptions = {
                 radius: 40,
                 lines: 7,
@@ -31,7 +30,6 @@
         Shell.prototype.activate = function () {
             var _this = this;
             this.common.activateController([], controllerId).then(function () {
-                _this.showSplash = false;
                 _this.logSuccess("Proverb v" + _this.config.version + " loaded!", null, true);
             });
         };
@@ -42,8 +40,11 @@
                 _this.toggleSpinner(true);
             });
 
-            this.$rootScope.$on(this.config.events.controllerActivateSuccess, function (data) {
-                _this.toggleSpinner(false);
+            this.$rootScope.$on(this.config.events.controllerActivateSuccess, function (event, data) {
+                // Deactivate spinner as long as the controller that has been activated is not the shell
+                if (data.controllerId !== controllerId) {
+                    _this.toggleSpinner(false);
+                }
             });
 
             this.$rootScope.$on(this.config.events.spinnerToggle, function (data) {

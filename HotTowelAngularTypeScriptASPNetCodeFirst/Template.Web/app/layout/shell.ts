@@ -11,7 +11,6 @@
         busyMessage: string;
         isBusy: boolean;
         logSuccess: (message: string, data?: Object, showToast?: boolean) => void;
-        showSplash: boolean;
         spinnerOptions: SpinnerOptions;
         urlSidebar: string;
         urlTopNav: string;
@@ -26,7 +25,6 @@
             this.logSuccess = common.logger.getLogFn(controllerId, "success");
             this.busyMessage = "Please wait ...";
             this.isBusy = true;
-            this.showSplash = true;
             this.spinnerOptions = {
                 radius: 40,
                 lines: 7,
@@ -49,7 +47,6 @@
         activate() {
             this.common.activateController([], controllerId)
                 .then(() => {
-                    this.showSplash = false;
                     this.logSuccess("Proverb v" + this.config.version + " loaded!", null, true);
                 });
         }
@@ -60,7 +57,12 @@
                 (event, next, current) => { this.toggleSpinner(true); });
 
             this.$rootScope.$on(this.config.events.controllerActivateSuccess,
-                (data) => { this.toggleSpinner(false); });
+                (event, data: { controllerId: string }) => {
+                    // Deactivate spinner as long as the controller that has been activated is not the shell
+                    if (data.controllerId !== controllerId) {
+                        this.toggleSpinner(false);
+                    }
+                });
 
             this.$rootScope.$on(this.config.events.spinnerToggle,
                 (data: spinnerToggleEvent) => { this.toggleSpinner(data.show); });
