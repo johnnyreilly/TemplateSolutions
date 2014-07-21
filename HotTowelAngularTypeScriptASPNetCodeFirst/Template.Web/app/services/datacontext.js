@@ -1,11 +1,4 @@
-//interface person {
-//    firstName: string;
-//    lastName: string;
-//    age: number;
-//    location: string;
-//}
-
-(function () {
+﻿(function () {
     "use strict";
 
     var serviceId = "datacontext";
@@ -19,8 +12,6 @@
         var logSuccess = getLogFn(serviceId, "success");
 
         var service = {
-            //getMessageCount: getMessageCount,
-            //getPeople: getPeople,
             // Undefined members will be replaced with properties in defineLazyLoadedRepos
             proverb: undefined,
             sage: undefined

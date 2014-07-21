@@ -37,12 +37,12 @@ namespace HotTowelAngularTypeScriptASPNetCodeFirst.Controllers
             return _userService.GetAll();
         }
 
-        /*
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        public User Post(User sage)
         {
+            return sage;
         }
+
+        /*
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)

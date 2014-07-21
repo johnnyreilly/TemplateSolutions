@@ -49,8 +49,15 @@
         }
 
         getSage(id: number) {
-            return this.datacontext.sage.getById(id).then(data => {
-                this.sage = data;
+            return this.datacontext.sage.getById(id).then(sage => {
+                this.sage = sage;
+            });
+        }
+
+        save() {
+            this.datacontext.sage.save(this.sage).then(sage => {
+                this.sage = sage;
+                this.$scope.form.$setPristine();
             });
         }
 

@@ -30,8 +30,16 @@
 
         SageEdit.prototype.getSage = function (id) {
             var _this = this;
-            return this.datacontext.sage.getById(id).then(function (data) {
-                _this.sage = data;
+            return this.datacontext.sage.getById(id).then(function (sage) {
+                _this.sage = sage;
+            });
+        };
+
+        SageEdit.prototype.save = function () {
+            var _this = this;
+            this.datacontext.sage.save(this.sage).then(function (sage) {
+                _this.sage = sage;
+                _this.$scope.form.$setPristine();
             });
         };
 

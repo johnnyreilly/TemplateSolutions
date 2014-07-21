@@ -6,8 +6,9 @@ interface sage {
 }
 
 interface repositorySage {
-    getById: (id: number, forceRemote?: boolean) => ng.IPromise<sage>;
     getAll: () => ng.IPromise<sage[]>;
+    getById: (id: number, forceRemote?: boolean) => ng.IPromise<sage>;
+    save: (sage: sage) => ng.IPromise<sage>;
 }
 
 (function () {
@@ -19,15 +20,24 @@ interface repositorySage {
     function repositorySage($http: ng.IHttpService, common: common, config: config) {
 
         var log = common.logger.getLogFn(serviceId);
-        var rootUrl = config.remoteServiceRoot;
+        var rootUrl = config.remoteServiceRoot + "sage";
         var cache: { [id: number]: sage } = {};
 
         var service: repositorySage = {
+            getAll: getAll,
             getById: getById,
-            getAll: getAll
+            save: save
         };
 
         return service;
+
+        function getAll() {
+            return $http.get<sage[]>(rootUrl).then(response => {
+                var sages = response.data;
+                log(sages.length + " Sages loaded");
+                return sages;
+            });
+        }
 
         function getById(id: number, forceRemote?: boolean) {
 
@@ -35,23 +45,24 @@ interface repositorySage {
             if (!forceRemote) {
                 sage = cache[id];
                 if (sage) {
+                    log("Sage " + sage.name + " [" + sage.id + "] loaded from cache");
                     return common.$q.when(sage);
                 }
             }
 
-            return $http.get<sage>(rootUrl + "sage/" + id).then(response => {
+            return $http.get<sage>(rootUrl + "/" + id).then(response => {
                 sage = response.data;
                 cache[sage.id] = sage;
-                log("Sage [" + sage.id + "] loaded");
+                log("Sage " + sage.name + " [" + sage.id + "] loaded");
                 return sage;
             });
         }
 
-        function getAll() {
-            return $http.get<sage[]>(rootUrl + "sage").then(response => {
-                var sages = response.data;
-                log(sages.length + " Sages loaded");
-                return sages;
+        function save(sage: sage) {
+            return $http.post<sage>(rootUrl, sage).then(response => {
+                sage = response.data;
+                log("Sage " + sage.name + " [" + sage.id + "] saved");
+                return sage;
             });
         }
     }

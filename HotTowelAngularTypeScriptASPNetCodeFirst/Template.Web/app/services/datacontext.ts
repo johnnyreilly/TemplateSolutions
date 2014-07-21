@@ -1,14 +1,4 @@
-//interface person {
-//    firstName: string;
-//    lastName: string;
-//    age: number;
-//    location: string;
-//}
-
 interface datacontext {
-    //getMessageCount: () => ng.IPromise<number>;
-    //getPeople: () => ng.IPromise<person[]>;
-
     proverb: repositoryProverb;
     sage: repositorySage;
 }
@@ -28,9 +18,6 @@ interface datacontext {
         var logSuccess = getLogFn(serviceId, "success");
 
         var service: datacontext = {
-            //getMessageCount: getMessageCount,
-            //getPeople: getPeople,
-
             // Undefined members will be replaced with properties in defineLazyLoadedRepos
             proverb: undefined,
             sage: undefined
