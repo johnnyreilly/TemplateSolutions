@@ -16,7 +16,6 @@
         sage: sage;
         title: string;
 
-        private _hasChanges: boolean;
         private _isSaving: boolean;
 
         static $inject = ["$routeParams", "$scope", "common", "datacontext"];
@@ -31,23 +30,12 @@
             this.sage = undefined;
             this.title = "Sage Edit";
 
-            this._hasChanges = false;
             this._isSaving = false;
-
-            this.wireUpWatches();
 
             this.activate();
         }
 
         // Prototype methods
-
-        wireUpWatches() {
-            this.$scope.$watchCollection(() => this.sage, (newSage: sage, oldSage: sage) => {
-                if (newSage && oldSage && !angular.equals(newSage, oldSage)) {
-                    this._hasChanges = true;
-                }
-            });
-        }
 
         activate() {
             var id = this.$routeParams.id;
@@ -63,18 +51,17 @@
         getSage(id: number) {
             return this.datacontext.sage.getById(id).then(data => {
                 this.sage = data;
-                this._hasChanges = false;
             });
         }
 
         // Properties
 
         get hasChanges(): boolean {
-            return this._hasChanges;
+            return this.$scope.form.$dirty;
         }
 
         get canSave(): boolean {
-            return this._hasChanges && !this._isSaving && this.$scope.form.$valid;
+            return this.hasChanges && !this._isSaving && this.$scope.form.$valid;
         }
     }
 
