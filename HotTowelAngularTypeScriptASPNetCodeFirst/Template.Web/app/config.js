@@ -26,7 +26,7 @@
         "$logProvider", function ($logProvider) {
             // turn debugging off/on (no info or warn)
             if ($logProvider.debugEnabled) {
-                $logProvider.debugEnabled(true);
+                $logProvider.debugEnabled(appConfig.inDebug);
             }
         }]);
 

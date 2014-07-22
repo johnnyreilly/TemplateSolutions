@@ -1,15 +1,16 @@
 ﻿@section scripts {
     <script>@* Server config to inject into client code *@
         window.appConfig = {
+            inDebug: @(AppConfigHelper.InDebug.ToString().ToLower()),
             remoteServiceRoot: "@Url.Content("~/api/")",
-            version: "@(VersionHelper.Version)"
+            version: "@(AppConfigHelper.Version)"
         };
     </script>
-    @Scripts.Render("~/app")
+    @Scripts.Render("~/angularApp")
 }
 
 <div>
-    <div ng-include="'/app/layout/shell.html?v=@(VersionHelper.Version)'"></div>
+    <div ng-include="'/app/layout/shell.html?v=@(AppConfigHelper.Version)'"></div>
     <div id="splash-page" ng-show="false" class="dissolve-animation">
         <div class="page-splash">
             <div class="page-splash-message">

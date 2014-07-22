@@ -1,4 +1,10 @@
-﻿interface config {
+﻿interface appConfig {
+    inDebug: boolean;
+    remoteServiceRoot: string;
+    version: string;
+}
+
+interface config {
     appErrorPrefix: string;
     docTitle: string;
     events: {
@@ -22,7 +28,7 @@ interface commonConfig {
     };
 }
 
-(function (appConfig: { remoteServiceRoot: string; version: string; }) {
+(function (appConfig: appConfig) {
     "use strict";
 
     var app = angular.module("app");
@@ -49,7 +55,7 @@ interface commonConfig {
     app.config(["$logProvider", function ($logProvider: ng.ILogProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(true);
+            $logProvider.debugEnabled(appConfig.inDebug);
         }
     }]);
     
