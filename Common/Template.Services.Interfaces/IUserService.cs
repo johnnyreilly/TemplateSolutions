@@ -11,5 +11,6 @@ namespace Template.Services.Interfaces
     {
         ICollection<User> GetAll();
         User GetById(int id);
+        User Save(User user);
     }
 }

@@ -39,6 +39,8 @@ namespace HotTowelAngularTypeScriptASPNetCodeFirst.Controllers
 
         public User Post(User sage)
         {
+            sage = _userService.Save(sage);
+
             return sage;
         }
 

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BaseCommandQuery.cs" />
     <Compile Include="ProverbQuery.cs" />
+    <Compile Include="UserCommand.cs" />
     <Compile Include="UserQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,21 +11,28 @@ namespace Template.Services
 {
     public class UserService : IUserService
     {
-        public UserService(IUserQuery userCQ)
+        public UserService(IUserCommand userCommand, IUserQuery userQuery)
         {
-            _userCQ = userCQ;
+            _userCommand = userCommand;
+            _userQuery = userQuery;
         }
 
-        private IUserQuery _userCQ;
+        private IUserCommand _userCommand;
+        private IUserQuery _userQuery;
 
         public ICollection<User> GetAll()
         {
-            return _userCQ.GetAll();
+            return _userQuery.GetAll();
         }
 
         public User GetById(int id)
         {
-            return _userCQ.GetById(id);
+            return _userQuery.GetById(id);
+        }
+
+        public User Save(User user) 
+        {
+            return _userCommand.Save(user);
         }
 
     }
