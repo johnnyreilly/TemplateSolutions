@@ -1,0 +1,34 @@
+﻿{
+    "References": [
+        { "Path": "../Template.Web/scripts/angular.js" },
+        { "Path": "../Template.Web/scripts/angular-animate.js"},
+        { "Path": "../Template.Web/scripts/angular-route.js"},
+        { "Path": "../Template.Web/scripts/angular-sanitize.js"},
+        { "Path": "../Template.Web/scripts/angular-ui/ui-bootstrap-tpls.js"},
+        { "Path": "../Template.Web/scripts/angular-mocks.js"},
+
+        { "Path": "../Template.Web/scripts/toastr.js" },
+        { "Path": "../Template.Web/scripts/moment.js" },
+        { "Path": "../Template.Web/scripts/spin.js" },
+
+        { "Path": "../Template.Web/app/common.js" },
+        { "Path": "../Template.Web/app/logger.js" },
+        { "Path": "../Template.Web/app/spinner.js" },
+
+        { "Path": "../Template.Web/app/common/bootstrap/bootstrap.dialog.js" },
+
+        { "Path": "../Template.Web/app/app.js"},
+        { "Path": "../Template.Web/app/config.js"},
+        { "Path": "../Template.Web/app/config.exceptionHandler.js"},
+        { "Path": "../Template.Web/app/config.route.js"},
+
+        { "Path": "../Template.Web/app/admin", "Include": "*.js"},
+        { "Path": "../Template.Web/app/dashboard", "Include": "*.js"},
+        { "Path": "../Template.Web/app/layout", "Include": "*.js"},
+        { "Path": "../Template.Web/app/proverbs", "Include": "*.js"},
+        { "Path": "../Template.Web/app/sages", "Include": "*.js"}
+    ],
+    "Tests": [
+        { "Path": "js", "Include": "*.js" }
+    ]
+}
