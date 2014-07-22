@@ -1,4 +1,4 @@
-namespace Template.Data.Migrations
+namespace Template.Data.EntityFramework.Migrations
 {
     using Template.Data.Models;
     using System;
@@ -6,14 +6,14 @@ namespace Template.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Template.Data.TemplateContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Template.Data.EntityFramework.TemplateContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Template.Data.TemplateContext context)
+        protected override void Seed(Template.Data.EntityFramework.TemplateContext context)
         {
             //  This method will be called after migrating to the latest version and every time the 
             //  database is accessed when the solution runs when database initializations are active.
@@ -71,7 +71,7 @@ namespace Template.Data.Migrations
                     Name = "Gemma Ozbek",
                     UserName = "gemma.ozbek",
                     Proverbs = new[] {
-                        new Proverb { Text = "I've joined I.T., I've turned 30, life's boring, I feel like Bridget Jones, right, give me them donugts, lets get this over and done with (a Gemma Oz quote)" }
+                        new Proverb { Text = "I've joined I.T., I've turned 30, life's boring, I feel like Bridget Jones, right, give me them donuts, lets get this over and done with" }
                     }
                 },
                 new User

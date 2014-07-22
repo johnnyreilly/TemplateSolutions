@@ -2,7 +2,7 @@
 using System;
 using System.Data.Entity;
 
-namespace Template.Data
+namespace Template.Data.EntityFramework
 {
     public class TemplateContext : DbContext
     {

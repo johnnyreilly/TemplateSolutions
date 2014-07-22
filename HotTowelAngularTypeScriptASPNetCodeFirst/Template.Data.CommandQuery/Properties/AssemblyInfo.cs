@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Template.Data.Interfaces")]
+[assembly: AssemblyTitle("Template.Data.CommandQuery")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Template.Data.Interfaces")]
+[assembly: AssemblyProduct("Template.Data.CommandQuery")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("80d4d267-88ef-4d44-a260-50b972b2d7a8")]
+[assembly: Guid("2d667009-6371-48a2-b63c-4ea1cb3081dd")]
 
 // Version information for an assembly consists of the following four values:
 //

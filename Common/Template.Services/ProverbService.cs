@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Template.Data.Interfaces;
+using Template.Data.CommandQuery.Interfaces;
 using Template.Data.Models;
 using Template.Services.Interfaces;
 
@@ -11,16 +11,16 @@ namespace Template.Services
 {
     public class ProverbService : IProverbService
     {
-        public ProverbService(ITemplateUnitOfWork db)
+        public ProverbService(IProverbQuery proverbCQ)
         {
-            _db = db;
+            _proverbCQ = proverbCQ;
         }
 
-        private ITemplateUnitOfWork _db;
+        private IProverbQuery _proverbCQ;
 
         public ICollection<Proverb> GetAll()
         {
-            return _db.Proverbs.GetAll();
+            return _proverbCQ.GetAll();
         }
 
     }

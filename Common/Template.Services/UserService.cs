@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Template.Data.Interfaces;
+using Template.Data.CommandQuery.Interfaces;
 using Template.Data.Models;
 using Template.Services.Interfaces;
 
@@ -11,21 +11,21 @@ namespace Template.Services
 {
     public class UserService : IUserService
     {
-        public UserService(ITemplateUnitOfWork db)
+        public UserService(IUserQuery userCQ)
         {
-            _db = db;
+            _userCQ = userCQ;
         }
 
-        private ITemplateUnitOfWork _db;
+        private IUserQuery _userCQ;
 
         public ICollection<User> GetAll()
         {
-            return _db.Users.GetAll();
+            return _userCQ.GetAll();
         }
 
         public User GetById(int id)
         {
-            return _db.Users.GetById(id);
+            return _userCQ.GetById(id);
         }
 
     }

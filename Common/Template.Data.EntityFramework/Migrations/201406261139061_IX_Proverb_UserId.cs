@@ -1,4 +1,4 @@
-namespace Template.Data.Migrations
+namespace Template.Data.EntityFramework.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

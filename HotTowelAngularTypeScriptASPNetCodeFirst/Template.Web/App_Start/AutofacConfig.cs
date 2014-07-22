@@ -3,14 +3,13 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using log4net;
 using Template.Data;
-using Template.Data.Interfaces;
-using Template.Data.Repositories;
 using Template.Web.Implementations;
 using Template.Web.Interfaces;
 using Template.Web.Utilities;
 using System.Reflection;
 using System.Web;
 using System.Web.Optimization;
+using Template.Data.EntityFramework;
 
 namespace Template.Web
 {
@@ -20,8 +19,14 @@ namespace Template.Web
         {
             var builder = new ContainerBuilder();
 
-            // Repositories
-            builder.RegisterType<TemplateUnitOfWork>().As<ITemplateUnitOfWork>().InstancePerLifetimeScope();
+            // DbContext
+            builder.RegisterType<TemplateContext>().As<TemplateContext>().InstancePerLifetimeScope();
+
+            // Queries / Commands
+            builder.RegisterAssemblyTypes(Assembly.Load("Template.Data.CommandQuery"))
+                .Where(t => t.Name.EndsWith("Query") || t.Name.EndsWith("Command"))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
             // Domain Services
             builder.RegisterAssemblyTypes(Assembly.Load("Template.Services"))

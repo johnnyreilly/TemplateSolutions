@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7EB46C18-FDC2-4C7A-84D7-B1A7C43190EF}</ProjectGuid>
+    <ProjectGuid>{5E2F8B10-1114-4A87-9146-ED7EA8DA0C6E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Template.Services</RootNamespace>
-    <AssemblyName>Template.Services</AssemblyName>
+    <RootNamespace>Template.Data.CommandQuery</RootNamespace>
+    <AssemblyName>Template.Data.CommandQuery</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,23 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserService.cs" />
-    <Compile Include="ProverbService.cs" />
+    <Compile Include="BaseCommandQuery.cs" />
+    <Compile Include="ProverbQuery.cs" />
+    <Compile Include="UserQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\HotTowelAngularTypeScriptASPNetCodeFirst\Template.Data.CommandQuery.Interfaces\Template.Data.CommandQuery.Interfaces.csproj">
-      <Project>{7a107de0-9097-4a1b-a287-ee4ac271e4d3}</Project>
-      <Name>Template.Data.CommandQuery.Interfaces</Name>
+    <ProjectReference Include="..\..\Common\Template.Data.EntityFramework\Template.Data.EntityFramework.csproj">
+      <Project>{20df06e0-0a4f-42ef-a6be-2db1c5f8d62d}</Project>
+      <Name>Template.Data.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Data.Models\Template.Data.Models.csproj">
+    <ProjectReference Include="..\..\Common\Template.Data.Models\Template.Data.Models.csproj">
       <Project>{03fe7175-596b-4d57-823e-8d783881fb0d}</Project>
       <Name>Template.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Services.Interfaces\Template.Services.Interfaces.csproj">
-      <Project>{fc9ef515-88d8-4366-bf4f-9fd08ce5138d}</Project>
-      <Name>Template.Services.Interfaces</Name>
+    <ProjectReference Include="..\Template.Data.CommandQuery.Interfaces\Template.Data.CommandQuery.Interfaces.csproj">
+      <Project>{7a107de0-9097-4a1b-a287-ee4ac271e4d3}</Project>
+      <Name>Template.Data.CommandQuery.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
