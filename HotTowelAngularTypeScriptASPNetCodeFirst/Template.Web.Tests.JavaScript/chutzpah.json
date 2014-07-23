@@ -1,5 +1,6 @@
 ﻿{
     "References": [
+        { "Path": "../Template.Web/scripts/jQuery-2.1.1.js" },
         { "Path": "../Template.Web/scripts/angular.js" },
         { "Path": "../Template.Web/scripts/angular-animate.js"},
         { "Path": "../Template.Web/scripts/angular-route.js"},
@@ -11,9 +12,9 @@
         { "Path": "../Template.Web/scripts/moment.js" },
         { "Path": "../Template.Web/scripts/spin.js" },
 
-        { "Path": "../Template.Web/app/common.js" },
-        { "Path": "../Template.Web/app/logger.js" },
-        { "Path": "../Template.Web/app/spinner.js" },
+        { "Path": "../Template.Web/app/common/common.js" },
+        { "Path": "../Template.Web/app/common/logger.js" },
+        { "Path": "../Template.Web/app/common/spinner.js" },
 
         { "Path": "../Template.Web/app/common/bootstrap/bootstrap.dialog.js" },
 
@@ -26,9 +27,11 @@
         { "Path": "../Template.Web/app/dashboard", "Include": "*.js"},
         { "Path": "../Template.Web/app/layout", "Include": "*.js"},
         { "Path": "../Template.Web/app/proverbs", "Include": "*.js"},
-        { "Path": "../Template.Web/app/sages", "Include": "*.js"}
+        { "Path": "../Template.Web/app/sages", "Include": "*.js"},
+
+        { "Path": "../Template.Web/app/services", "Include": "*.js"}
     ],
     "Tests": [
-        { "Path": "js", "Include": "*.js" }
+        { "Path": "app", "Include": "*.js" }
     ]
 }

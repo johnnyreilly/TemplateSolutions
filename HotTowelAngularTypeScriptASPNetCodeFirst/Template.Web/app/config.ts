@@ -15,6 +15,7 @@ interface config {
         imageBasePath: string;
         unknownPersonImageSource: string;
     }
+    inDebug: boolean;
     remoteServiceRoot: string;
     version: string;
 }
@@ -28,11 +29,20 @@ interface commonConfig {
     };
 }
 
-(function (appConfig: appConfig) {
+(function () {
     "use strict";
 
     var app = angular.module("app");
 
+    // First check the window for an appConfig object to use
+    // then fall back to stubbed out data - only the tests should really use this
+    // (This is DIRTY but appears to be the only way to configure Angular from the server prior to kick off)
+    var appConfig: appConfig = window["appConfig"] || {
+        inDebug: true,
+        remoteServiceRoot: "/api/",
+        version: "Testing"
+    };
+    
     // Configure Toastr
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = "toast-bottom-right";
@@ -46,6 +56,7 @@ interface commonConfig {
         appErrorPrefix: "[Error] ", //Configure the exceptionHandler decorator
         docTitle: "Proverb: ",
         events: events,
+        inDebug: appConfig.inDebug,
         remoteServiceRoot: appConfig.remoteServiceRoot,
         version: appConfig.version
     };
@@ -55,7 +66,7 @@ interface commonConfig {
     app.config(["$logProvider", function ($logProvider: ng.ILogProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(appConfig.inDebug);
+            $logProvider.debugEnabled(config.inDebug);
         }
     }]);
     
@@ -67,4 +78,4 @@ interface commonConfig {
         cfg.config.version = config.version;
     }]);
     //#endregion
-})(window["appConfig"]);
+})();
