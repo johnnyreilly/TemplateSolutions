@@ -3,7 +3,8 @@
     "use strict";
 
     var SageDetail = (function () {
-        function SageDetail($routeParams, common, datacontext) {
+        function SageDetail($location, $routeParams, common, datacontext) {
+            this.$location = $location;
             this.$routeParams = $routeParams;
             this.common = common;
             this.datacontext = datacontext;
@@ -32,7 +33,11 @@
                 return _this.sage = data;
             });
         };
-        SageDetail.$inject = ["$routeParams", "common", "datacontext"];
+
+        SageDetail.prototype.gotoEdit = function () {
+            this.$location.path("/sages/edit/" + this.sage.id);
+        };
+        SageDetail.$inject = ["$location", "$routeParams", "common", "datacontext"];
         return SageDetail;
     })();
 

@@ -13,13 +13,15 @@
     class SageEdit {
 
         log: loggerFunction;
+        logSuccess: loggerFunction;
         sage: sage;
         title: string;
 
         private _isSaving: boolean;
 
-        static $inject = ["$routeParams", "$scope", "common", "datacontext"];
+        static $inject = ["$location", "$routeParams", "$scope", "common", "datacontext"];
         constructor(
+            private $location: ng.ILocationService,
             private $routeParams: sageEditRouteParams,
             private $scope: sageEditScope,
             private common: common,
@@ -27,6 +29,7 @@
             ) {
 
             this.log = common.logger.getLogFn(controllerId);
+            this.logSuccess = common.logger.getLogFn(controllerId, "success");
             this.sage = undefined;
             this.title = "Sage Edit";
 
@@ -57,7 +60,9 @@
         save() {
             this.datacontext.sage.save(this.sage).then(sage => {
                 this.sage = sage;
-                this.$scope.form.$setPristine();
+                this.logSuccess("Saved " + sage.name + " [" + sage.id + "]");
+                //this.$scope.form.$setPristine();
+                this.$location.path("/sages/detail/" + this.sage.id);
             });
         }
 

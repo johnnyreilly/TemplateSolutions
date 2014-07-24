@@ -3,12 +3,14 @@
     "use strict";
 
     var SageEdit = (function () {
-        function SageEdit($routeParams, $scope, common, datacontext) {
+        function SageEdit($location, $routeParams, $scope, common, datacontext) {
+            this.$location = $location;
             this.$routeParams = $routeParams;
             this.$scope = $scope;
             this.common = common;
             this.datacontext = datacontext;
             this.log = common.logger.getLogFn(controllerId);
+            this.logSuccess = common.logger.getLogFn(controllerId, "success");
             this.sage = undefined;
             this.title = "Sage Edit";
 
@@ -39,7 +41,10 @@
             var _this = this;
             this.datacontext.sage.save(this.sage).then(function (sage) {
                 _this.sage = sage;
-                _this.$scope.form.$setPristine();
+                _this.logSuccess("Saved " + sage.name + " [" + sage.id + "]");
+
+                //this.$scope.form.$setPristine();
+                _this.$location.path("/sages/detail/" + _this.sage.id);
             });
         };
 
@@ -59,7 +64,7 @@
             enumerable: true,
             configurable: true
         });
-        SageEdit.$inject = ["$routeParams", "$scope", "common", "datacontext"];
+        SageEdit.$inject = ["$location", "$routeParams", "$scope", "common", "datacontext"];
         return SageEdit;
     })();
 

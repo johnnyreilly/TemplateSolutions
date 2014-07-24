@@ -12,8 +12,9 @@
         sage: sage;
         title: string;
 
-        static $inject = ["$routeParams", "common", "datacontext"];
+        static $inject = ["$location", "$routeParams", "common", "datacontext"];
         constructor(
+            private $location: ng.ILocationService,
             private $routeParams: sageDetailRouteParams,
             private common: common,
             private datacontext: datacontext
@@ -42,6 +43,10 @@
 
         getSage(id: number) {
             return this.datacontext.sage.getById(id, true).then(data => this.sage = data);
+        }
+
+        gotoEdit() {
+            this.$location.path("/sages/edit/" + this.sage.id);
         }
     }
 
