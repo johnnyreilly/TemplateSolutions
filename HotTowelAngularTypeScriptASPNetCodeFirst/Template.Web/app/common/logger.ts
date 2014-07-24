@@ -18,9 +18,9 @@ interface logger {
 (function () {
     "use strict";
     
-    angular.module("common").factory("logger", ["$log", logger]);
+    angular.module("common").factory("logger", ["$log", "config", logger]);
 
-    function logger($log: ng.ILogService) {
+    function logger($log: ng.ILogService, config: config) {
         var service: logger = {
             getLogFn: getLogFn,
             log: log,
@@ -31,7 +31,7 @@ interface logger {
 
         return service;
 
-        function getLogFn(moduleId: string, fnName: string) {
+        function getLogFn(moduleId: string, fnName?: string) {
             fnName = fnName || "log";
             switch (fnName.toLowerCase()) { // convert aliases
                 case "success":
@@ -46,7 +46,12 @@ interface logger {
 
             var logFn: loggerFunctionWithSource = service[fnName] || service.log;
             return function (msg: string, data: Object, showToast: boolean) {
-                logFn(msg, data, moduleId, (showToast === undefined) ? true : showToast);
+
+                var displayToast = (showToast === undefined)
+                    ? (fnName !== "log") ? true : config.inDebug // only in debug mode show toasts for "log" messages
+                    : showToast;
+
+                logFn(msg, data, moduleId, displayToast);
             };
         }
 
